@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/registration_background"
-    tools:context=".RegisterActivity">
+    tools:context=".Register">
 
     <TextView
         android:id="@+id/textView"
@@ -14,15 +14,15 @@
         android:layout_marginTop="220dp"
         android:gravity="center"
         android:text="Registration"
-        android:textSize="50px"
+        android:textSize="20sp"
 
         android:textColor="@color/black"
         android:textStyle="bold" />
 
     <EditText
         android:id="@+id/Username"
-        android:layout_width="323dp"
-        android:layout_height="wrap_content"
+        android:layout_width="312dp"
+        android:layout_height="65dp"
         android:layout_marginLeft="47dp"
         android:layout_marginTop="270dp"
         android:backgroundTint="#A1000000"
@@ -34,7 +34,7 @@
     <EditText
         android:id="@+id/Password"
         android:layout_width="321dp"
-        android:layout_height="wrap_content"
+        android:layout_height="65dp"
         android:layout_below="@+id/Username"
         android:layout_marginLeft="46dp"
         android:layout_marginTop="30dp"
@@ -46,8 +46,8 @@
 
     <EditText
         android:id="@+id/ConfirmPassword"
-        android:layout_width="321dp"
-        android:layout_height="wrap_content"
+        android:layout_width="319dp"
+        android:layout_height="65dp"
         android:layout_below="@+id/Password"
         android:layout_marginLeft="46dp"
         android:layout_marginTop="30dp"
