@@ -2,17 +2,18 @@
     <!-- Base application theme. -->
     <style name="Theme.ITipid" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorPrimary">#004AAD</item>
+        <item name="colorPrimaryVariant">#008DDD</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorSecondary">#004AAC</item>
+        <item name="colorSecondaryVariant">#008CDC</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">#004AAD</item>
         <!-- Customize your theme here. -->
     </style>
+    
 
     <style name="Theme.ITipid.NoActionBar">
         <item name="windowActionBar">false</item>
@@ -22,4 +23,10 @@
     <style name="Theme.ITipid.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.ITipid.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    
+    <style name="CustomTabStyle" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">10sp</item>
+    </style>
+    
+    
 </resources>
