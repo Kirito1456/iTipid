@@ -3,6 +3,8 @@ package ph.edu.dlsu.mobdeve.mojicajera.itipid
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.widget.Button
 import android.widget.TextView
 import org.w3c.dom.Text
 
@@ -24,8 +26,21 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+        // Trouble Logging In?
+        val forgotTV = findViewById<TextView>(R.id.forgetPass)
+        forgotTV.setOnClickListener(){
+            val intent = Intent(this, forgotPass::class.java)
+            startActivity(intent)
 
+        }
 
+        // Handles On Click for Button
+        val loginButton = findViewById<Button>(R.id.button)
+        loginButton.setOnClickListener(){
+            val intent = Intent(this, Register::class.java)
+            startActivity(intent)
+
+        }
 
     }
 
