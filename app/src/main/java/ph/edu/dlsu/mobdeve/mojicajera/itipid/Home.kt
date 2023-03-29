@@ -62,7 +62,7 @@ class Home : AppCompatActivity() {
             mAuth.signOut()
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
-
+            finish()
         }
 
         viewPager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
