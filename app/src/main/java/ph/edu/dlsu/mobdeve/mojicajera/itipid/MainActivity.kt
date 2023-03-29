@@ -22,9 +22,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-
-
         firebaseAuth = FirebaseAuth.getInstance()
         binding.createAccount.setOnClickListener{
             val intent = Intent(this, Register::class.java)
