@@ -86,7 +86,7 @@ class AddBalance : AppCompatActivity() {
         val transacId = firebaseAuth.uid.toString()
         var transaction1 = Transactions(transacName, transacAmount.toDouble(), transacDate.toBoolean())
 
-                dbRef.child(transacId).setValue(transaction1).addOnCompleteListener {
+        dbRef.child("users").child(transacId).child("arrayList").setValue(transaction1).addOnCompleteListener {
                     Toast.makeText(this, "Data inserted successfully", Toast.LENGTH_LONG).show()
 
 

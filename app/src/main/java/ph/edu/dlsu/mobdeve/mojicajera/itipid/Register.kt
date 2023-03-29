@@ -61,7 +61,7 @@ class Register : AppCompatActivity() {
         val userId = firebaseAuth.uid.toString()
 
         val user = User(userId, username, pass, ArrayList<Transactions>(), ArrayList<Goals>(), ArrayList<Bills>())
-        dbRef.child(userId).setValue(user)
+        dbRef.child("users").child(userId).setValue(user)
             .addOnCompleteListener {
                 Toast.makeText(this, "Data inserted successfully", Toast.LENGTH_LONG).show()
 
