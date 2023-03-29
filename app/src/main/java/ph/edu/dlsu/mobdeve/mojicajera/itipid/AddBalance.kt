@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.google.firebase.*
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.Bills
@@ -27,6 +28,7 @@ class AddBalance : AppCompatActivity() {
 
     //Database Reference
     private lateinit var dbRef : DatabaseReference
+    private lateinit var  firebaseAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,21 +40,19 @@ class AddBalance : AppCompatActivity() {
         etTransacDescription = findViewById(R.id.description)
 
         dbRef = FirebaseDatabase.getInstance().getReference("Transactions")
+        firebaseAuth = FirebaseAuth.getInstance()
 
         saveButton.setOnClickListener{
             saveTransactionData()
         }
 
-        cancelButton.setOnClickListener(
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-        )
+
     }
 
     private fun saveTransactionData(){
 
         var arrayList : ArrayList<Transactions>
-
+        val list = ArrayList<User>()
         // Get Values
         val transacName = etTransacName.text.toString()
         val transacAmount = etTransacAmount.text.toString()
@@ -72,18 +72,21 @@ class AddBalance : AppCompatActivity() {
             etTransacDescription.error = "Please enter Description"
         }
 
-        val transacId = dbRef.push().key!!
-            var transaction1 = Transactions
+        val transacId = firebaseAuth.uid
+        var transaction1 = Transactions(transacName, transacAmount.toDouble(), transacDate.toBoolean())
 
-        val user = User(transacId,username, pass, ArrayList<Transactions>(), ArrayList<Goals>(), ArrayList<Bills>())
-        dbRef.child(transacId).setValue(user)
-            .addOnCompleteListener {
-                Toast.makeText(this, "Data inserted successfully", Toast.LENGTH_LONG).show()
+        for (i in list){
+            if(transacId == i.userId)(
+                    dbRef.child(transacId!!).setValue(transaction1).addOnCompleteListener {
+                        Toast.makeText(this, "Data inserted successfully", Toast.LENGTH_LONG).show()
 
 
-            }.addOnFailureListener { err ->
-                Toast.makeText(this, "Error ${err.message}", Toast.LENGTH_LONG).show()
-            }
+                    }.addOnFailureListener { err ->
+                        Toast.makeText(this, "Error ${err.message}", Toast.LENGTH_LONG).show()
+                    }
+            )
+        }
+
 
     }
 }
