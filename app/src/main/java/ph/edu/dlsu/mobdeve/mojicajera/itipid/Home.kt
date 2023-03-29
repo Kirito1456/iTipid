@@ -9,6 +9,7 @@ import android.widget.TableLayout
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
+import com.google.firebase.auth.FirebaseAuth
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.fragments.adapters.FragmentPageAdapter
 
 class Home : AppCompatActivity() {
@@ -16,10 +17,13 @@ class Home : AppCompatActivity() {
      lateinit var tabLayout: TabLayout
      lateinit var viewPager2: ViewPager2
      lateinit var adapter : FragmentPageAdapter
+     lateinit var mAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+
+        mAuth = FirebaseAuth.getInstance()
 
         tabLayout = findViewById(R.id.tabLayout)
         viewPager2 = findViewById(R.id.viewPager2)
@@ -49,10 +53,14 @@ class Home : AppCompatActivity() {
             }
         })
 
-        // Setting Button
-        val settingsButton = findViewById<ImageButton>(R.id.settingsButton)
+
+
+
+        // logout Button
+        val settingsButton = findViewById<ImageButton>(R.id.logoutButton)
         settingsButton.setOnClickListener(){
-            val intent = Intent(this, Settings::class.java)
+            mAuth.signOut()
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
 
         }

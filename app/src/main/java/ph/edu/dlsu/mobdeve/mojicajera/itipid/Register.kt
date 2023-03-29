@@ -14,12 +14,12 @@ class Register : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = ActivityRegisterBinding.inflate(layoutInflater)
-        setContentView(R.layout.activity_register)
+        setContentView(binding.root)
 
         firebaseAuth = FirebaseAuth.getInstance()
 
 
-        binding.SubmitButton.setOnClickListener{
+        binding.SubmitButton.setOnClickListener(){
 
             val username = binding.Username.text.toString()
             val pass = binding.Password.text.toString()
@@ -27,11 +27,10 @@ class Register : AppCompatActivity() {
 
             if(username.isNotEmpty() && pass.isNotEmpty() && confirmPass.isNotEmpty()){
                 if(pass == confirmPass){
-
                     firebaseAuth.createUserWithEmailAndPassword(username, pass).addOnCompleteListener{
                         if(it.isSuccessful){
 
-                            val intent = Intent(this, Login::class.java)
+                            val intent = Intent(this, MainActivity::class.java)
                             startActivity(intent)
                         }else{
                             Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
@@ -43,7 +42,6 @@ class Register : AppCompatActivity() {
                 }
             }else{
                 Toast.makeText(this, "Empty Fields are not allowed!", Toast.LENGTH_SHORT).show()
-
             }
         }
     }

@@ -7,46 +7,62 @@ import android.util.Log
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
+import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
 import org.w3c.dom.Text
+import ph.edu.dlsu.mobdeve.mojicajera.itipid.databinding.ActivityLoginBinding
 
 class MainActivity : AppCompatActivity() {
 
 
+    private lateinit var binding: ActivityLoginBinding
+    private lateinit var firebaseAuth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
 
-        //This Segments Handles Create Account and Trouble Logging In Text View//
 
-        // On Click Listener for Create an Account Text View
-        val registerTV = findViewById<TextView>(R.id.createAccount)
-        registerTV.setOnClickListener(){
+
+        firebaseAuth = FirebaseAuth.getInstance()
+        binding.createAccount.setOnClickListener{
             val intent = Intent(this, Register::class.java)
             startActivity(intent)
-
         }
 
-        // Trouble Logging In?
-        val forgotTV = findViewById<TextView>(R.id.forgetPass)
-        forgotTV.setOnClickListener(){
-            val intent = Intent(this, forgotPass::class.java)
-            startActivity(intent)
+        binding.button.setOnClickListener{
+            val username = binding.editTextTextPersonName.text.toString()
+            val pass = binding.editTextTextPassword.text.toString()
 
+            if(username.isNotEmpty() && pass.isNotEmpty() ){
+
+                firebaseAuth.signInWithEmailAndPassword(username, pass).addOnCompleteListener{
+                    if(it.isSuccessful){
+
+                        val intent = Intent(this, Home::class.java)
+                        startActivity(intent)
+                    }else{
+                        Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+            }else{
+                Toast.makeText(this, "Empty Fields are not allowed!", Toast.LENGTH_SHORT).show()
+            }
         }
+    }
 
-        // Handles On Click for Button
-        val loginButton = findViewById<Button>(R.id.button)
-        loginButton.setOnClickListener(){
+    override fun onStart() {
+        super.onStart()
+        if(firebaseAuth.currentUser != null){
             val intent = Intent(this, Home::class.java)
             startActivity(intent)
-
         }
 
 
 
     }
-
 
 
 
