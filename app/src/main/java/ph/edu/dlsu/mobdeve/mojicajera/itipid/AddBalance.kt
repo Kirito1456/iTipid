@@ -14,6 +14,9 @@ import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.Bills
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.Goals
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.Transactions
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.User
+import java.time.LocalDate
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class AddBalance : AppCompatActivity() {
@@ -83,11 +86,11 @@ class AddBalance : AppCompatActivity() {
             etTransacDescription.error = "Please enter Description"
         }
 
-        val transacId = firebaseAuth.uid.toString()
+        val transacId = dbRef.push().key!!
         val uid = firebaseAuth.uid.toString()
-        var transaction1 = Transactions(transacName, transacAmount.toDouble(), transacDate.toBoolean())
+        var transaction = Transactions(uid, transacName, transacAmount.toDouble(), Date(transacDate), transacDescription)
 
-        dbRef.child("users").child(transacId).child("arrayList").setValue(transaction1).addOnCompleteListener {
+        dbRef.child(transacId).setValue(transaction).addOnCompleteListener {
                     Toast.makeText(this, "Data inserted successfully", Toast.LENGTH_LONG).show()
 
 
