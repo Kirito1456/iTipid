@@ -1,5 +1,6 @@
 package ph.edu.dlsu.mobdeve.mojicajera.itipid
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -23,8 +24,6 @@ class AddBalance : AppCompatActivity() {
     private lateinit var etTransacDate: EditText
     private lateinit var etTransacDescription: EditText
     //Buttons
-    private lateinit var saveButton: Button
-    private lateinit var cancelButton: Button
 
     //Database Reference
     private lateinit var dbRef : DatabaseReference
@@ -34,19 +33,30 @@ class AddBalance : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_balance)
 
+
+
         etTransacName = findViewById(R.id.label)
         etTransacAmount = findViewById(R.id.amount)
         etTransacDate = findViewById(R.id.date)
         etTransacDescription = findViewById(R.id.description)
 
-        dbRef = FirebaseDatabase.getInstance().getReference("Transactions")
+        dbRef = FirebaseDatabase.getInstance().getReference("User")
         firebaseAuth = FirebaseAuth.getInstance()
         firebase = FirebaseDatabase.getInstance()
 
+
+        // Save Button
+        val saveButton = findViewById<Button>(R.id.saveButton)
         saveButton.setOnClickListener{
             saveTransactionData()
         }
 
+        // Cancel Button
+        val cancelButton = findViewById<Button>(R.id.cancelButton)
+        cancelButton.setOnClickListener(){
+            val intent = Intent(this, Home::class.java)
+            startActivity(intent)
+        }
 
     }
 
@@ -64,7 +74,7 @@ class AddBalance : AppCompatActivity() {
             etTransacName.error = "Please enter Name"
         }
         if (transacAmount.isEmpty()) {
-            etTransacAmount.error = "Please enter Amount"
+            etTransacAmount.error = "Provide Amount"
         }
         if (transacDate.isEmpty()) {
             etTransacDate.error = "Please enter Date"
@@ -73,21 +83,15 @@ class AddBalance : AppCompatActivity() {
             etTransacDescription.error = "Please enter Description"
         }
 
-        val transacId = firebaseAuth.uid
+        val transacId = firebaseAuth.uid.toString()
         var transaction1 = Transactions(transacName, transacAmount.toDouble(), transacDate.toBoolean())
 
-        for (i in list){
-            if(transacId == i.userId)(
-                    dbRef.child().setValue(transaction1).addOnCompleteListener {
-                        Toast.makeText(this, "Data inserted successfully", Toast.LENGTH_LONG).show()
+                dbRef.child(transacId).setValue(transaction1).addOnCompleteListener {
+                    Toast.makeText(this, "Data inserted successfully", Toast.LENGTH_LONG).show()
 
 
-                    }.addOnFailureListener { err ->
-                        Toast.makeText(this, "Error ${err.message}", Toast.LENGTH_LONG).show()
-                    }
-            )
-        }
-
-
+                }.addOnFailureListener { err ->
+                    Toast.makeText(this, "Error ${err.message}", Toast.LENGTH_LONG).show()
+                }
     }
 }
