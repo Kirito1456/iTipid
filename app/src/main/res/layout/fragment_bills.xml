@@ -7,13 +7,23 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
         <TextView
-            android:layout_width="wrap_content"
+
+            android:layout_width="209dp"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="BILLS FRAGMENT"
-            android:textColor="@color/black"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="110dp"
+            android:layout_marginTop="455dp"
+            android:layout_marginEnd="92dp"
+            android:layout_marginBottom="404dp"
+            android:text="Upcoming Bills"
+            android:textColor="@color/purple_700"
             android:textSize="24sp" />
 
 
