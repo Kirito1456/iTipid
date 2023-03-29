@@ -58,7 +58,7 @@ class Register : AppCompatActivity() {
     private fun saveUserData(){
         val username = binding.Username.text.toString()
         val pass = binding.Password.text.toString()
-        val userId = dbRef.push().key!!
+        val userId = firebaseAuth.uid.toString()
 
         val user = User(userId, username, pass, ArrayList<Transactions>(), ArrayList<Goals>(), ArrayList<Bills>())
         dbRef.child(userId).setValue(user)

@@ -14,7 +14,7 @@
       android:background="#004AAD"
       android:gravity="center"
       android:padding="40dp"
-      android:text="PHP 153,084.00"
+      android:text="PHP 0.00"
       android:textColor="@color/white"
       android:textSize="30dp"
       android:textStyle="bold"

@@ -1,11 +1,11 @@
 package ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass
 
 class User(
-    var userId : String,
-    var Username: String,
-    var Password: String,
-    var Transactions: ArrayList<Transactions>?,
-    var Goals: ArrayList<Goals>,
-    var Bills: ArrayList<Bills>?
+    var userId : String? = null,
+    var Username: String?= null,
+    var Password: String?= null,
+    var Transactions: ArrayList<Transactions>?= null,
+    var Goals: ArrayList<Goals>?= null,
+    var Bills: ArrayList<Bills>?= null
 ) {
 }
