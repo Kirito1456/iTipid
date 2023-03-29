@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "380835827148",
+    "firebase_url": "https://itipid-3361d-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "itipid-3361d",
+    "storage_bucket": "itipid-3361d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:380835827148:android:30f7e73c61c82ff9b96169",
+        "android_client_info": {
+          "package_name": "ph.edu.dlsu.mobdeve.mojicajera.itipid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "380835827148-qvcn5r7bniluv098rg4rleto39al7du5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQLYfFt9mxq5P1vqpQDLyPbV9x2zeMevk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "380835827148-qvcn5r7bniluv098rg4rleto39al7du5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
