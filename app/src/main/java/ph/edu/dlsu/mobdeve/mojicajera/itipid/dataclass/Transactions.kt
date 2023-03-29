@@ -1,4 +1,6 @@
 package ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass
 
-class Transactions(var label :String, var amount: Double, var type: Boolean?=null) {
+import java.util.Date
+
+class Transactions(var uid: String?= null,var label :String, var amount: Double, var date: Date, var type: String) {
 }

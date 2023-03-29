@@ -60,12 +60,11 @@ class Register : AppCompatActivity() {
         val pass = binding.Password.text.toString()
         val userId = firebaseAuth.uid.toString()
 
-        val user = User(userId, username, pass, ArrayList<Transactions>(), ArrayList<Goals>(), ArrayList<Bills>())
-        dbRef.child("users").child(userId).setValue(user)
+        val user = User(userId, username, pass)
+
+        dbRef.child(userId).setValue(user)
             .addOnCompleteListener {
                 Toast.makeText(this, "Data inserted successfully", Toast.LENGTH_LONG).show()
-
-
             }.addOnFailureListener { err ->
                 Toast.makeText(this, "Error ${err.message}", Toast.LENGTH_LONG).show()
             }
