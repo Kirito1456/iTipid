@@ -29,7 +29,7 @@ class AddBalance : AppCompatActivity() {
     //Database Reference
     private lateinit var dbRef : DatabaseReference
     private lateinit var  firebaseAuth: FirebaseAuth
-
+    private lateinit var  firebase: FirebaseDatabase
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_balance)
@@ -41,6 +41,7 @@ class AddBalance : AppCompatActivity() {
 
         dbRef = FirebaseDatabase.getInstance().getReference("Transactions")
         firebaseAuth = FirebaseAuth.getInstance()
+        firebase = FirebaseDatabase.getInstance()
 
         saveButton.setOnClickListener{
             saveTransactionData()
@@ -77,7 +78,7 @@ class AddBalance : AppCompatActivity() {
 
         for (i in list){
             if(transacId == i.userId)(
-                    dbRef.child(transacId!!).setValue(transaction1).addOnCompleteListener {
+                    dbRef.child().setValue(transaction1).addOnCompleteListener {
                         Toast.makeText(this, "Data inserted successfully", Toast.LENGTH_LONG).show()
 
 
