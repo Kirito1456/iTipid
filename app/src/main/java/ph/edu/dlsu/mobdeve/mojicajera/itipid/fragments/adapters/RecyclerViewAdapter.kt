@@ -1,12 +1,15 @@
 package ph.edu.dlsu.mobdeve.mojicajera.itipid.fragments.adapters
 
+import android.content.Intent
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import org.w3c.dom.Text
+import ph.edu.dlsu.mobdeve.mojicajera.itipid.EditTransaction
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.R
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.Transactions
 
@@ -32,6 +35,20 @@ class RecyclerViewAdapter (private val transactionList: ArrayList<Transactions>)
         if(holder.type.text == "Income"){
             holder.amount.setTextColor(Color.parseColor("#00FF00"))
         }else holder.amount.setTextColor(Color.parseColor("#FF0000"))
+
+
+
+
+        holder.itemView.findViewById<Button>(R.id.editButton).setOnClickListener{
+            var intent = Intent(it.context, EditTransaction::class.java)
+
+            intent.putExtra("label", transactionList[position].label)
+            intent.putExtra("amount", transactionList[position].amount)
+            intent.putExtra("date", transactionList[position].date)
+            intent.putExtra("description", transactionList[position].description)
+
+            holder.itemView.context.startActivity(intent)
+        }
 
 
     }
