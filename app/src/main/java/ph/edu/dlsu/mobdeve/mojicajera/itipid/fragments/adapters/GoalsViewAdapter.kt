@@ -27,6 +27,7 @@ class GoalsViewAdapter (private val goalsList: ArrayList<Goals>)
         holder.amount.text = goals.startingAmount.toString()
         holder.date.text = goals.date.toString()
 
+
     }
 
     override fun getItemCount(): Int {

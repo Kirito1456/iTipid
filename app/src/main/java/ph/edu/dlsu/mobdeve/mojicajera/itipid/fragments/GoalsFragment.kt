@@ -48,6 +48,7 @@ class GoalsFragment : Fragment() {
         return view
     }
 
+
     private fun getTransactionData(){
         recyclerView.visibility = View.GONE
         database = FirebaseDatabase.getInstance().getReference("Goals")
