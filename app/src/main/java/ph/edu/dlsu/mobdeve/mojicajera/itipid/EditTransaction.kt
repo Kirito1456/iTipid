@@ -32,11 +32,11 @@ class EditTransaction : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
         firebase = FirebaseDatabase.getInstance()
 
-        val data = intent.extras
-        labelString = data?.getString("label")!!
-        amountString = data.getString("amount")!!
-        dateString = data.getString("date")!!
-        descriptionString = data.getString("description")!!
+        //val data = intent.extras
+        labelString = getIntent().getParcelableExtra("label")!!
+        amountString = getIntent().getParcelableExtra("amount")!!
+        dateString = getIntent().getParcelableExtra("date")!!
+        descriptionString = getIntent().getParcelableExtra("description")!!
 
 
         binding.editTransactionLabel.setText(labelString)

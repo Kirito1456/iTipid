@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import org.w3c.dom.Text
@@ -25,6 +26,7 @@ class RecyclerViewAdapter (private val transactionList: ArrayList<Transactions>)
     }
 
     override fun onBindViewHolder(holder: TransactionViewHolder, position: Int) {
+       // holder.bindData(this.videoData[position])
         val transaction = transactionList[position]
         holder.label.text = transaction.label
         holder.amount.text = transaction.amount.toString()
@@ -39,10 +41,10 @@ class RecyclerViewAdapter (private val transactionList: ArrayList<Transactions>)
 
 
 
-        holder.itemView.findViewById<Button>(R.id.editButton).setOnClickListener{
+        holder.itemView.findViewById<ImageButton>(R.id.editButton).setOnClickListener{
             var intent = Intent(it.context, EditTransaction::class.java)
 
-            intent.putExtra("label", transactionList[position].label)
+            intent.putExtra("label", transaction.label)
             intent.putExtra("amount", transactionList[position].amount)
             intent.putExtra("date", transactionList[position].date)
             intent.putExtra("description", transactionList[position].description)
@@ -57,11 +59,11 @@ class RecyclerViewAdapter (private val transactionList: ArrayList<Transactions>)
     }
 
     class TransactionViewHolder(itemView: View)  : RecyclerView.ViewHolder(itemView){
+
         val label: TextView = itemView.findViewById(R.id.tvLabel)
         val amount: TextView = itemView.findViewById(R.id.transactionAmount)
         val date: TextView = itemView.findViewById(R.id.tvDate)
         val type: TextView = itemView.findViewById(R.id.type)
-
 
 
     }
