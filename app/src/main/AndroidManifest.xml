@@ -16,6 +16,12 @@
         android:theme="@style/Theme.ITipid"
         tools:targetApi="31">
         <activity
+            android:name=".AddGoals"
+            android:exported="false" />
+        <activity
+            android:name=".AddBills"
+            android:exported="false" />
+        <activity
             android:name=".Reports"
             android:exported="false" />
         <activity

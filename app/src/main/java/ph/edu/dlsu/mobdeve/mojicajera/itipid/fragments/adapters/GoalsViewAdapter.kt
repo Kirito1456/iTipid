@@ -20,15 +20,12 @@ class GoalsViewAdapter (private val goalsList: ArrayList<Goals>)
     }
 
     override fun onBindViewHolder(
-        holder: RecyclerViewAdapter.TransactionViewHolder,
-        position: Int
+        holder: GoalsViewHolder, position: Int
     ) {
         val goals = goalsList[position]
         holder.label.text = goals.label
-        holder.amount.text = goals.amount.toString()
-        holder.date.text = goals.date
-        holder.type.text = goals.description
-
+        holder.amount.text = goals.startingAmount.toString()
+        holder.date.text = goals.date.toString()
 
     }
 
@@ -37,11 +34,8 @@ class GoalsViewAdapter (private val goalsList: ArrayList<Goals>)
     }
 
     class GoalsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val label: TextView = itemView.findViewById(R.id.tvLabel)
-        val amount: TextView = itemView.findViewById(R.id.transactionAmount)
-        val date: TextView = itemView.findViewById(R.id.tvDate)
-        val type: TextView = itemView.findViewById(R.id.type)
-
-
+        val label: TextView = itemView.findViewById(R.id.label)
+        val amount: TextView = itemView.findViewById(R.id.startingAmount)
+        val date: TextView = itemView.findViewById(R.id.date)
     }
 }

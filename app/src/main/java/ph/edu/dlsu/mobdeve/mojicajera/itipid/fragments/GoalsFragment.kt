@@ -30,8 +30,8 @@ class GoalsFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_daily, container, false)
-        recyclerView = view.findViewById(R.id.recyclerView)
+        val view = inflater.inflate(R.layout.fragment_goals, container, false)
+        recyclerView = view.findViewById(R.id.goalsRecycler)
 
         // TO DO: Fetch Data From FireBase
 
@@ -50,7 +50,7 @@ class GoalsFragment : Fragment() {
 
     private fun getTransactionData(){
         recyclerView.visibility = View.GONE
-        database = FirebaseDatabase.getInstance().getReference("Transactions")
+        database = FirebaseDatabase.getInstance().getReference("Goals")
 
 
 

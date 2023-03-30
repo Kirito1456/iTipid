@@ -3,11 +3,11 @@ package ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass
 import java.util.*
 
 class Bills(
-    val uid: String,
-    val label: String,
-    val amount: Double,
-    val dueDate: Date,
-    val status: String
+    val uid: String?= null,
+    val label: String?= null,
+    val amount: Double?= null,
+    val dueDate: Date?= null,
+    val status: String?= null
     ) {
 
 }
