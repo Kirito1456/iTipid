@@ -6,103 +6,113 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import com.google.firebase.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.Bills
-import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.Goals
+import ph.edu.dlsu.mobdeve.mojicajera.itipid.databinding.ActivityAddBalanceBinding
+import ph.edu.dlsu.mobdeve.mojicajera.itipid.databinding.ActivityRegisterBinding
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.Transactions
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.User
-import java.time.LocalDate
 import java.util.*
 import kotlin.collections.ArrayList
 
 
 class AddBalance : AppCompatActivity() {
 
-    //EditTextViews
-    private lateinit var etTransacName: EditText
-    private lateinit var etTransacAmount: EditText
-    private lateinit var etTransacDate: EditText
-    private lateinit var etTransacDescription: EditText
-    //Buttons
+//    //EditTextViews
+//    private lateinit var etTransacName: EditText
+//    private lateinit var etTransacAmount: EditText
+//    private lateinit var etTransacDate: EditText
+//    private lateinit var etTransacDescription: EditText
 
+    private var transacType: String = ""
+
+    //Buttons
+    private lateinit var  binding: ActivityAddBalanceBinding
     //Database Reference
     private lateinit var dbRef : DatabaseReference
     private lateinit var  firebaseAuth: FirebaseAuth
     private lateinit var  firebase: FirebaseDatabase
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityAddBalanceBinding.inflate(layoutInflater)
         setContentView(R.layout.activity_add_balance)
 
 
-
-        etTransacName = findViewById(R.id.label)
-        etTransacAmount = findViewById(R.id.amount)
-        etTransacDate = findViewById(R.id.date)
-        etTransacDescription = findViewById(R.id.description)
+//        etTransacName = findViewById(R.id.label)
+//        etTransacAmount = findViewById(R.id.amount)
+//        etTransacDate = findViewById(R.id.date)
+//        etTransacDescription = findViewById(R.id.description)
 
         dbRef = FirebaseDatabase.getInstance().getReference("Transactions")
         firebaseAuth = FirebaseAuth.getInstance()
         firebase = FirebaseDatabase.getInstance()
 
 
+
+        // Income Button
+
+        binding.incomeButton.setOnClickListener(){
+            binding.expenseButton.isEnabled = false
+
+        }
+
+        // Expense Button
+        binding.expenseButton.setOnClickListener(){
+            binding.incomeButton.isEnabled = false
+
+        }
+
         // Save Button
-        val saveButton = findViewById<Button>(R.id.saveButton)
-        saveButton.setOnClickListener{
+
+        binding.saveButton.setOnClickListener{
             saveTransactionData()
         }
 
         // Cancel Button
-        val cancelButton = findViewById<Button>(R.id.cancelButton)
-        cancelButton.setOnClickListener(){
+
+        binding.cancelButton.setOnClickListener(){
             val intent = Intent(this, Home::class.java)
             startActivity(intent)
         }
 
 
-        // Income Button
-        val button = findViewById<Button>(R.id.incomeButton)
-        button.setOnClickListener(){
-
-        }
-
-        // Expense Button
 
     }
 
-    private fun saveTransactionData(){
+    private fun saveTransactionData() {
 
-        var arrayList : ArrayList<Transactions>
-        val list = ArrayList<User>()
-
-        val transactType: Boolean // True = Income, False = Expense
-
-
+        if(!binding.expenseButton.isEnabled){
+             transacType =  binding.incomeButton.text.toString()
+        } else if (!binding.incomeButton.isEnabled){
+             transacType =  binding.expenseButton.text.toString()
+        }else{
+            binding.incomeButton.error = "Please choose one"
+        }
 
         // Get Values
-        val transacName = etTransacName.text.toString()
-        val transacAmount = etTransacAmount.text.toString()
-        val transacDate = etTransacDate.text.toString()
-        val transacDescription = etTransacDescription.text.toString()
+        val transacName = binding.label.text.toString()
+        val transacAmount = binding.amount.text.toString()
+        val transacDate = binding.date.text.toString()
+        val transacDescription = binding.description.text.toString()
+
 
         if (transacName.isEmpty()){
-            etTransacName.error = "Please enter Name"
+            binding.label.error = "Please enter Name"
         }
         if (transacAmount.isEmpty()) {
-            etTransacAmount.error = "Provide Amount"
+            binding.amount.error = "Provide Amount"
         }
         if (transacDate.isEmpty()) {
-            etTransacDate.error = "Please enter Date"
+            binding.date.error = "Please enter Date"
         }
         if (transacDescription.isEmpty()) {
-            etTransacDescription.error = "Please enter Description"
+            binding.description.error = "Please enter Description"
         }
 
         val transacId = dbRef.push().key!!
         val uid = firebaseAuth.uid.toString()
-        var transaction = Transactions(uid, transacName, transacAmount.toDouble(), Date(transacDate), transacDescription)
+        val transaction = Transactions(uid, transacName, transacAmount.toDouble(), Date(transacDate), transacDescription, transacType)
 
         dbRef.child(transacId).setValue(transaction).addOnCompleteListener {
                     Toast.makeText(this, "Data inserted successfully", Toast.LENGTH_LONG).show()
