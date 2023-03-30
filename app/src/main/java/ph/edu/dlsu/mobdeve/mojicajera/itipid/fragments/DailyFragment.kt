@@ -20,20 +20,11 @@ class DailyFragment : Fragment() {
     private lateinit var transactionAdapter: RecyclerViewAdapter
 
 
-
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_daily, container, false)
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         // Recycler
-        recyclerView = requireView().findViewById(R.id.recyclerView)
+        recyclerView = findViewById(R.id.recyclerView)
         recyclerView.setHasFixedSize(true)
 
         // Fetch Data Logic
@@ -43,6 +34,13 @@ class DailyFragment : Fragment() {
 
         // Edit Button Logic
 
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_daily, container, false)
     }
 
 
