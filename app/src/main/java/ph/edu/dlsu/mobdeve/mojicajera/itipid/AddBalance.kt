@@ -82,11 +82,11 @@ class AddBalance : AppCompatActivity() {
         val transactType: Boolean // True = Income, False = Expense
 
 
-        val dateFormat= SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
+
         // Get Values
         val transacName = etTransacName.text.toString()
         val transacAmount = etTransacAmount.text.toString()
-        val transacDate = dateFormat.format(etTransacDate.text).toString()
+        val transacDate = etTransacDate.text.toString()
         val transacDescription = etTransacDescription.text.toString()
 
         if (transacName.isEmpty()){

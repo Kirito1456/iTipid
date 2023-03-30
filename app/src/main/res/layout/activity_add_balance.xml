@@ -92,7 +92,7 @@
             android:layout_weight="1"
             android:ems="5"
             android:hint="mm/dd/yyyy"
-            android:inputType="date" />
+            android:inputType="textPersonName" />
 
     </LinearLayout>
 

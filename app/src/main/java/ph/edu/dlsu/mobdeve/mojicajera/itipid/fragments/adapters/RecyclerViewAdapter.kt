@@ -1,5 +1,6 @@
 package ph.edu.dlsu.mobdeve.mojicajera.itipid.fragments.adapters
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,6 +26,12 @@ class RecyclerViewAdapter (private val transactionList: ArrayList<Transactions>)
         holder.label.text = transaction.label
         holder.amount.text = transaction.amount.toString()
         holder.date.text = transaction.date
+        holder.type.text = transaction.description
+
+
+        if(holder.type.text == "Income"){
+            holder.amount.setTextColor(Color.parseColor("#00FF00"))
+        }else holder.amount.setTextColor(Color.parseColor("#FF0000"))
 
 
         // Clickable
@@ -41,5 +48,9 @@ class RecyclerViewAdapter (private val transactionList: ArrayList<Transactions>)
         val label: TextView = itemView.findViewById(R.id.tvLabel)
         val amount: TextView = itemView.findViewById(R.id.transactionAmount)
         val date: TextView = itemView.findViewById(R.id.tvDate)
+        val type: TextView = itemView.findViewById(R.id.type)
+
+
+
     }
 }

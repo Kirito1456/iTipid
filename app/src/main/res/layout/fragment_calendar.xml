@@ -6,13 +6,28 @@
     tools:context=".fragments.DailyFragment">
 
 
-
-        <CalendarView
-
-            android:layout_gravity="center_horizontal"
-            android:id="@+id/calendarView"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+                <CalendarView
+
+                    android:id="@+id/calendarView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal" />
+
+                <TextView
+                    android:id="@+id/events"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Events"
+                    android:textStyle="bold"
+                    android:textSize="30sp"
+                    android:textColor="@color/black"
+                    android:layout_marginStart="10dp"/>
+        </LinearLayout>
 
 
 </FrameLayout>

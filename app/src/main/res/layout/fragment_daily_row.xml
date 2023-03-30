@@ -45,27 +45,41 @@
 
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/transactionAmount"
-                android:layout_width="50dp"
-                android:paddingTop="0dp"
-                android:textSize="15sp"
-                android:gravity="center"
-                android:textStyle="bold"
-                android:textColor="#070D0D"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="+25000.0" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/transactionAmount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:paddingTop="0dp"
+                    android:text="+25000.0"
+                    android:textColor="#070D0D"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/type"
+                    android:layout_width="114dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Type"
+                    android:gravity="center"/>
+            </LinearLayout>
 
             <ImageButton
-                android:padding="2dp"
-                android:backgroundTint="@color/white"
                 android:id="@+id/editButton"
                 android:layout_width="10dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/sharp_edit_24"
-                android:scaleType="center"/>
+                android:backgroundTint="@color/white"
+                android:padding="2dp"
+                android:scaleType="center"
+                app:srcCompat="@drawable/sharp_edit_24" />
 
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
