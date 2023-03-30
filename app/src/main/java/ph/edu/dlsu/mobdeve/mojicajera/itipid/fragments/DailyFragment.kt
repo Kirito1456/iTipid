@@ -43,7 +43,7 @@ class DailyFragment : Fragment() {
         transactionAdapter =  RecyclerViewAdapter(transactionList)
         recyclerView.adapter = transactionAdapter
 
-        // getTransactionData()
+         getTransactionData()
 
         return view
     }
