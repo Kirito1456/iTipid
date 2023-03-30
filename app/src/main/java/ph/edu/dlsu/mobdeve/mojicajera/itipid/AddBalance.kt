@@ -53,6 +53,8 @@ class AddBalance : AppCompatActivity() {
         val saveButton = findViewById<Button>(R.id.saveButton)
         saveButton.setOnClickListener{
             saveTransactionData()
+            val intent = Intent(this, Home::class.java)
+            startActivity(intent)
         }
 
         // Cancel Button
@@ -100,8 +102,8 @@ class AddBalance : AppCompatActivity() {
         if (transacDate.isEmpty()) {
             etTransacDate.error = "Please enter Date"
         }
-        if (transacDescription.isEmpty()) {
-            etTransacDescription.error = "Please enter Description"
+        if (transacDescription == "Transaction") {
+            etTransacDescription.error = "Please pick a Transaction"
         }
 
         val transacId = dbRef.push().key!!
