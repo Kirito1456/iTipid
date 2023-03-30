@@ -51,8 +51,6 @@ class AddBalance : AppCompatActivity() {
         val saveButton = findViewById<Button>(R.id.saveButton)
         saveButton.setOnClickListener{
             saveTransactionData()
-            val intent = Intent(this, Home::class.java)
-            startActivity(intent)
         }
 
         // Cancel Button
