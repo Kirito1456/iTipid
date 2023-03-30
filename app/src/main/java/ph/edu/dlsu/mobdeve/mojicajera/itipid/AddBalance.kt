@@ -1,22 +1,20 @@
 package ph.edu.dlsu.mobdeve.mojicajera.itipid
 
-import android.annotation.SuppressLint
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import ph.edu.dlsu.mobdeve.mojicajera.itipid.databinding.ActivityAddBalanceBinding
-import ph.edu.dlsu.mobdeve.mojicajera.itipid.databinding.ActivityRegisterBinding
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.Transactions
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.User
+import java.text.DateFormat
+import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 
 class AddBalance : AppCompatActivity() {
@@ -86,11 +84,11 @@ class AddBalance : AppCompatActivity() {
         val transactType: Boolean // True = Income, False = Expense
 
 
-
+        val dateFormat: DateFormat = SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
         // Get Values
         val transacName = etTransacName.text.toString()
         val transacAmount = etTransacAmount.text.toString()
-        val transacDate = etTransacDate.text.toString()
+        val transacDate = dateFormat.format(etTransacDate.text).toString()
         val transacDescription = etTransacDescription.text.toString()
 
         if (transacName.isEmpty()){
@@ -108,7 +106,7 @@ class AddBalance : AppCompatActivity() {
 
         val transacId = dbRef.push().key!!
         val uid = firebaseAuth.uid.toString()
-        val transaction = Transactions(uid, transacName, transacAmount.toDouble(), Date(transacDate), transacDescription)
+        val transaction = Transactions(uid, transacName, transacAmount.toDouble(), transacDate, transacDescription)
 
         if(transacName.isNotEmpty() && transacAmount.isNotEmpty() && transacDate.isNotEmpty() && transacDescription!="Transaction"){
             dbRef.child(transacId).setValue(transaction).addOnCompleteListener {
