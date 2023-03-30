@@ -7,8 +7,10 @@ import android.view.LayoutInflater
 import android.view.SurfaceControl.Transaction
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.database.*
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.R
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.Transactions
@@ -32,8 +34,6 @@ class DailyFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_daily, container, false)
         recyclerView = view.findViewById(R.id.recyclerView)
 
-
-
         // TO DO: Fetch Data From FireBase
 
         recyclerView.layoutManager = LinearLayoutManager(activity)
@@ -45,12 +45,15 @@ class DailyFragment : Fragment() {
 
          getTransactionData()
 
+
         return view
     }
 
 private fun getTransactionData(){
     recyclerView.visibility = View.GONE
     database = FirebaseDatabase.getInstance().getReference("Transactions")
+
+
 
     database.addValueEventListener(object : ValueEventListener{
         override fun onDataChange(snapshot: DataSnapshot) {
