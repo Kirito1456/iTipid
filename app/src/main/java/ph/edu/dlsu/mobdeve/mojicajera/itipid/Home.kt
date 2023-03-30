@@ -72,6 +72,13 @@ class Home : AppCompatActivity() {
             startActivity(intent)
         }
 
+        // Reports Button
+        val reportsButton = findViewById<ImageButton>(R.id.reportsButton)
+        reportsButton.setOnClickListener(){
+            val intent = Intent(this, Reports::class.java)
+            startActivity(intent)
+        }
+
         viewPager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
