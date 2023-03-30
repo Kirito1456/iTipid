@@ -15,56 +15,26 @@
         android:layout_weight="1"
         android:ems="15"
         android:gravity="center"
-        android:text="Transaction"
+        android:text="Edit Transaction"
         android:textColor="@color/black"
         android:textSize="20dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/horizontal"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.44" />
-
-    <LinearLayout
-        android:id="@+id/horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:orientation="horizontal"
-        android:paddingLeft="30dp"
-        android:paddingRight="30dp"
-        app:layout_constraintTop_toBottomOf="@id/description"
-        tools:layout_editor_absoluteX="0dp">
-
-        <Button
-            android:id="@+id/incomeButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
-            android:layout_weight="1"
-            android:text="Income" />
-
-        <Button
-            android:id="@+id/expenseButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
-            android:layout_weight="1"
-            android:text="EXPENSE" />
-
-    </LinearLayout>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/vertical"
         android:layout_width="412dp"
         android:layout_height="262dp"
-        android:layout_marginTop="1dp"
         android:orientation="vertical"
         android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/horizontal"
-        app:layout_constraintVertical_bias="0.00999999">
+        app:layout_constraintTop_toBottomOf="@+id/description"
+        app:layout_constraintVertical_bias="0.0">
 
 
         <EditText
@@ -83,6 +53,15 @@
             android:layout_weight="1"
             android:ems="5"
             android:hint="Amount"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/editTransactionType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="Goal Amount"
             android:inputType="textPersonName" />
 
         <EditText

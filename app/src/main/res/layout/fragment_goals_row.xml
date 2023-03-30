@@ -28,7 +28,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/label"
+                    android:id="@+id/editTransactionLabel"
                     android:layout_width="300dp"
                     android:layout_height="50dp"
                     android:layout_weight="1"
@@ -75,7 +75,7 @@
                     android:textAlignment="center" />
 
                 <TextView
-                    android:id="@+id/date"
+                    android:id="@+id/editTransactionDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

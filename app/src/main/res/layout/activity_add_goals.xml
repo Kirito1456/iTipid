@@ -37,7 +37,7 @@
 
 
         <EditText
-            android:id="@+id/label"
+            android:id="@+id/editTransactionLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -64,7 +64,7 @@
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/date"
+            android:id="@+id/editTransactionDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"

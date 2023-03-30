@@ -12,8 +12,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.Bills
-import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.Goals
-import java.time.LocalDate
 
 class AddBills : AppCompatActivity() {
     //EditTextViews
@@ -34,9 +32,9 @@ class AddBills : AppCompatActivity() {
 
 
 
-        etBillsLabel = findViewById(R.id.label)
-        etBillsAmount = findViewById(R.id.amount)
-        etBillsDate = findViewById(R.id.date)
+        etBillsLabel = findViewById(R.id.editTransactionLabel)
+        etBillsAmount = findViewById(R.id.editTransactionAmount)
+        etBillsDate = findViewById(R.id.editTransactionDate)
 
         dbRef = FirebaseDatabase.getInstance().getReference("Bills")
         firebaseAuth = FirebaseAuth.getInstance()
@@ -80,7 +78,7 @@ class AddBills : AppCompatActivity() {
 
         val billsId = dbRef.push().key!!
         val uid = firebaseAuth.uid.toString()
-        val bills = Bills(uid, billsName,billsAmount.toDouble(), LocalDate.parse(billsDate))
+        val bills = Bills(uid, billsName,billsAmount.toDouble(), billsDate)
 
         if(billsName.isNotEmpty() && billsAmount.isNotEmpty() && billsDate.isNotEmpty()){
             dbRef.child(billsId).setValue(bills).addOnCompleteListener {

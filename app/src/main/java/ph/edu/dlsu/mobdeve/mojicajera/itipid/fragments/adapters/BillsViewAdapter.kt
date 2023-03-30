@@ -34,8 +34,8 @@ class BillsViewAdapter (private val billsList: ArrayList<Bills>)
     }
 
     class BillsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val label: TextView = itemView.findViewById(R.id.label)
-        val amount: TextView = itemView.findViewById(R.id.amount)
-        val date: TextView = itemView.findViewById(R.id.date)
+        val label: TextView = itemView.findViewById(R.id.billLabel)
+        val amount: TextView = itemView.findViewById(R.id.billAmount)
+        val date: TextView = itemView.findViewById(R.id.billDue)
     }
 }

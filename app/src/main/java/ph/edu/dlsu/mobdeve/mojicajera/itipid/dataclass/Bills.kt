@@ -7,7 +7,7 @@ class Bills(
     val uid: String?= null,
     val label: String?= null,
     val amount: Double?= null,
-    val dueDate: LocalDate?= null,
+    val dueDate: String?= null,
     val status: String?= null
     ) {
 

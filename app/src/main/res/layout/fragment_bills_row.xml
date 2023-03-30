@@ -28,7 +28,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/textView4"
+                    android:id="@+id/billLabel"
                     android:layout_width="300dp"
                     android:layout_height="50dp"
                     android:layout_weight="1"
@@ -60,7 +60,7 @@
                     android:textAlignment="center" />
 
                 <TextView
-                    android:id="@+id/textView5"
+                    android:id="@+id/billAmount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -75,7 +75,7 @@
                     android:textAlignment="center" />
 
                 <TextView
-                    android:id="@+id/textView9"
+                    android:id="@+id/billDue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

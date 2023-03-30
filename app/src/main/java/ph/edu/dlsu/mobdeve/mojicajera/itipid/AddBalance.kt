@@ -12,8 +12,6 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.Transactions
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.User
-import java.text.DateFormat
-import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -37,9 +35,9 @@ class AddBalance : AppCompatActivity() {
 
 
 
-        etTransacName = findViewById(R.id.label)
-        etTransacAmount = findViewById(R.id.amount)
-        etTransacDate = findViewById(R.id.date)
+        etTransacName = findViewById(R.id.editTransactionLabel)
+        etTransacAmount = findViewById(R.id.editTransactionAmount)
+        etTransacDate = findViewById(R.id.editTransactionDate)
         etTransacDescription = findViewById(R.id.description)
 
         dbRef = FirebaseDatabase.getInstance().getReference("Transactions")

@@ -34,11 +34,6 @@ class RecyclerViewAdapter (private val transactionList: ArrayList<Transactions>)
         }else holder.amount.setTextColor(Color.parseColor("#FF0000"))
 
 
-        // Clickable
-//        holder.itemView.setOnClickListener(){
-//            onItemClick?.invoke(transaction)
-//        }
-
     }
     override fun getItemCount(): Int {
         return transactionList.size

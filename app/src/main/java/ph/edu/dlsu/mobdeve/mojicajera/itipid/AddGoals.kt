@@ -5,15 +5,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.Goals
-import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.Transactions
-import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.User
-import java.util.ArrayList
 
 class AddGoals : AppCompatActivity() {
     //EditTextViews
@@ -34,10 +30,10 @@ class AddGoals : AppCompatActivity() {
 
 
 
-        etGoalsLabel = findViewById(R.id.label)
+        etGoalsLabel = findViewById(R.id.editTransactionLabel)
         etGoalsAmount = findViewById(R.id.goalAmount)
         etGoalsStarting = findViewById(R.id.startingAmount)
-        etGoalsDate = findViewById(R.id.date)
+        etGoalsDate = findViewById(R.id.editTransactionDate)
 
         dbRef = FirebaseDatabase.getInstance().getReference("Goals")
         firebaseAuth = FirebaseAuth.getInstance()

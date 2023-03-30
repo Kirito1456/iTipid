@@ -1,6 +1,5 @@
 package ph.edu.dlsu.mobdeve.mojicajera.itipid.fragments.adapters
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -35,8 +34,8 @@ class GoalsViewAdapter (private val goalsList: ArrayList<Goals>)
     }
 
     class GoalsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val label: TextView = itemView.findViewById(R.id.label)
+        val label: TextView = itemView.findViewById(R.id.editTransactionLabel)
         val amount: TextView = itemView.findViewById(R.id.startingAmount)
-        val date: TextView = itemView.findViewById(R.id.date)
+        val date: TextView = itemView.findViewById(R.id.editTransactionDate)
     }
 }
