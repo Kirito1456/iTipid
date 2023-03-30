@@ -43,7 +43,7 @@ class AddBalance : AppCompatActivity() {
         etTransacDate = findViewById(R.id.date)
         etTransacDescription = findViewById(R.id.description)
 
-        dbRef = FirebaseDatabase.getInstance().getReference("User")
+        dbRef = FirebaseDatabase.getInstance().getReference("Transactions")
         firebaseAuth = FirebaseAuth.getInstance()
         firebase = FirebaseDatabase.getInstance()
 
@@ -61,12 +61,26 @@ class AddBalance : AppCompatActivity() {
             startActivity(intent)
         }
 
+
+        // Income Button
+        val button = findViewById<Button>(R.id.incomeButton)
+        button.setOnClickListener(){
+
+        }
+
+        // Expense Button
+
     }
 
     private fun saveTransactionData(){
 
         var arrayList : ArrayList<Transactions>
         val list = ArrayList<User>()
+
+        val transactType: Boolean // True = Income, False = Expense
+
+
+
         // Get Values
         val transacName = etTransacName.text.toString()
         val transacAmount = etTransacAmount.text.toString()
