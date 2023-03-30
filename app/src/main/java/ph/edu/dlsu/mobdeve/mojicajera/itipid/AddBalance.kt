@@ -65,7 +65,7 @@ class AddBalance : AppCompatActivity() {
 
         // Income Button
         val incomeButton = findViewById<Button>(R.id.incomeButton)
-        val expenseButton = findViewById<Button>(R.id.incomeButton)
+        val expenseButton = findViewById<Button>(R.id.expenseButton)
         incomeButton.setOnClickListener(){
             etTransacDescription.text = "Income"
         }

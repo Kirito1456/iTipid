@@ -9,9 +9,24 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.recyclerview.widget.RecyclerView
+
+        <TextView
+            android:id="@+id/prompt"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:background="#d6d6d6"
+            android:text="Transaction History as of Today" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/prompt"
+            android:layout_centerInParent="true"
+            tools:listitem="@layout/fragment_daily_row" />
     </RelativeLayout>
 
 </FrameLayout>
