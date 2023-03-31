@@ -13,6 +13,14 @@ import ph.edu.dlsu.mobdeve.mojicajera.itipid.fragments.BillsFragment
 
 class EditTransaction : AppCompatActivity() {
 
+    companion object {
+        const val labelKey : String = "LABEL_KEY"
+        const val amountKey : String = "AMOUNT_KEY"
+        const val positionKey: String = "POSITION_KEY"
+        const val descKey : String = "DESC_KEY"
+        const val dateKey : String = "DATE_KEY"
+    }
+
     private lateinit var dbRef : DatabaseReference
     private lateinit var  firebaseAuth: FirebaseAuth
     private lateinit var  firebase: FirebaseDatabase
@@ -26,17 +34,17 @@ class EditTransaction : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityEditTransactionBinding.inflate(layoutInflater)
-        setContentView(R.layout.activity_edit_transaction)
+        setContentView(binding.root)
 
         dbRef = FirebaseDatabase.getInstance().getReference("Transactions")
         firebaseAuth = FirebaseAuth.getInstance()
         firebase = FirebaseDatabase.getInstance()
 
-        //val data = intent.extras
-        labelString = intent.getStringExtra("label")!!
-        amountString = intent.getStringExtra("amount")!!
-        dateString = intent.getStringExtra("date")!!
-        descriptionString = intent.getStringExtra("description")!!
+        val data = intent.extras
+        labelString = data?.getString(labelKey)!!
+        amountString = data.getString(amountKey)!!
+        dateString = data.getString(dateKey)!!
+        descriptionString = data.getString(descKey)!!
 
 
         binding.editTransactionLabel.setText(labelString)
