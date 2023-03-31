@@ -1,4 +1,4 @@
-package ph.edu.dlsu.mobdeve.mojicajera.itipid.fragments.adapters
+package ph.edu.dlsu.mobdeve.mojicajera.itipid.adapters
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

@@ -59,7 +59,7 @@
                     android:paddingTop="0dp"
                     android:text="+25000.0"
                     android:textColor="#070D0D"
-                    android:textSize="20sp"
+                    android:textSize="17sp"
                     android:textStyle="bold" />
 
                 <TextView

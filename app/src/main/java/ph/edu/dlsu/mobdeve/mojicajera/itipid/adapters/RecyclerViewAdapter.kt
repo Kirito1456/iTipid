@@ -1,4 +1,4 @@
-package ph.edu.dlsu.mobdeve.mojicajera.itipid.fragments.adapters
+package ph.edu.dlsu.mobdeve.mojicajera.itipid.adapters
 
 import android.content.Intent
 import android.graphics.Color
@@ -35,10 +35,10 @@ class RecyclerViewAdapter (private val transactionList: ArrayList<Transactions>)
 
 
         if(holder.type.text == "Income"){
+            holder.amount.text = "+ %.2f".format(transaction.amount)
             holder.amount.setTextColor(Color.parseColor("#00FF00"))
-        }else holder.amount.setTextColor(Color.parseColor("#FF0000"))
-
-
+        }else {holder.amount.setTextColor(Color.parseColor("#FF0000"))
+            holder.amount.text = "- %.2f".format(transaction.amount)}
 
 
         holder.itemView.findViewById<ImageButton>(R.id.editButton).setOnClickListener{
@@ -57,6 +57,8 @@ class RecyclerViewAdapter (private val transactionList: ArrayList<Transactions>)
     override fun getItemCount(): Int {
         return transactionList.size
     }
+
+
 
     class TransactionViewHolder(itemView: View)  : RecyclerView.ViewHolder(itemView){
 

@@ -14,7 +14,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.database.*
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.R
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.Transactions
-import ph.edu.dlsu.mobdeve.mojicajera.itipid.fragments.adapters.RecyclerViewAdapter
+import ph.edu.dlsu.mobdeve.mojicajera.itipid.adapters.RecyclerViewAdapter
 
 
 class DailyFragment : Fragment() {
@@ -49,7 +49,15 @@ class DailyFragment : Fragment() {
         return view
     }
 
-private fun getTransactionData(){
+    // TODO : Update DashBoard
+//    private fun updateDashBoard(){
+//
+//        val totalIncome : Double = transactionList.map{it.amount}.sum()
+//        val totalExpense : Double = transactionList.filter{ it.amount!! > 0.0 }.map{it.amount}.sum()
+//
+//    }
+
+    private fun getTransactionData(){
     recyclerView.visibility = View.GONE
     database = FirebaseDatabase.getInstance().getReference("Transactions")
 

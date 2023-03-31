@@ -32,7 +32,7 @@ class EditTransaction : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
         firebase = FirebaseDatabase.getInstance()
 
-        //val data = intent.extras
+        val data = intent.extras
         labelString = getIntent().getParcelableExtra("label")!!
         amountString = getIntent().getParcelableExtra("amount")!!
         dateString = getIntent().getParcelableExtra("date")!!

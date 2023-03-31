@@ -11,8 +11,8 @@ import com.google.firebase.database.*
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.R
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.Bills
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.Goals
-import ph.edu.dlsu.mobdeve.mojicajera.itipid.fragments.adapters.BillsViewAdapter
-import ph.edu.dlsu.mobdeve.mojicajera.itipid.fragments.adapters.GoalsViewAdapter
+import ph.edu.dlsu.mobdeve.mojicajera.itipid.adapters.BillsViewAdapter
+import ph.edu.dlsu.mobdeve.mojicajera.itipid.adapters.GoalsViewAdapter
 
 
 class BillsFragment : Fragment() {

@@ -1,4 +1,4 @@
-package ph.edu.dlsu.mobdeve.mojicajera.itipid.fragments.adapters
+package ph.edu.dlsu.mobdeve.mojicajera.itipid.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -13,9 +13,9 @@ class GoalsViewAdapter (private val goalsList: ArrayList<Goals>)
     : RecyclerView.Adapter<GoalsViewAdapter.GoalsViewHolder>() {
     var onItemClick: ((Transactions) -> Unit)? = null
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GoalsViewAdapter.GoalsViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GoalsViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.fragment_goals_row,parent,false)
-        return GoalsViewAdapter.GoalsViewHolder(view)
+        return GoalsViewHolder(view)
     }
 
     override fun onBindViewHolder(

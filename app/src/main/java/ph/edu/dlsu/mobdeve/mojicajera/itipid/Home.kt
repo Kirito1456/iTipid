@@ -14,7 +14,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.google.firebase.auth.FirebaseAuth
-import ph.edu.dlsu.mobdeve.mojicajera.itipid.fragments.adapters.FragmentPageAdapter
+import ph.edu.dlsu.mobdeve.mojicajera.itipid.adapters.FragmentPageAdapter
 
 class Home : AppCompatActivity() {
 
@@ -127,6 +127,11 @@ class Home : AppCompatActivity() {
             val intent = Intent(this, AddBills::class.java)
             startActivity(intent)
         }
+
+//        val balanceButton = findViewById<ImageButton>(R.id.balanceButton)
+//        balanceButton.setOnClickListener(){
+//            val intent = Intent(this, )
+//        }
 
 
         mainButton.setOnClickListener{

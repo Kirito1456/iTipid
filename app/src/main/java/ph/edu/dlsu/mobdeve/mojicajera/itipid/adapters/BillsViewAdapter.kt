@@ -1,4 +1,4 @@
-package ph.edu.dlsu.mobdeve.mojicajera.itipid.fragments.adapters
+package ph.edu.dlsu.mobdeve.mojicajera.itipid.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -13,9 +13,9 @@ class BillsViewAdapter (private val billsList: ArrayList<Bills>)
     : RecyclerView.Adapter<BillsViewAdapter.BillsViewHolder>() {
     var onItemClick: ((Bills) -> Unit)? = null
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BillsViewAdapter.BillsViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BillsViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.fragment_bills_row,parent,false)
-        return BillsViewAdapter.BillsViewHolder(view)
+        return BillsViewHolder(view)
     }
 
     override fun onBindViewHolder(
