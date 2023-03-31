@@ -8,6 +8,7 @@ class Goals (
     val startingAmount: Double?= null,
     val goalAmount: Double?= null,
     val label: String?= null,
+    val goalId: String? = null,
     val progress: Double?= null,
     val isComplete: Boolean?= null
         ) {
