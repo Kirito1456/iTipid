@@ -53,20 +53,20 @@ class EditTransaction : AppCompatActivity() {
         binding.editTransactionType.setText(descriptionString)
 
         binding.saveButton.setOnClickListener {
-//            val transacId = dbRef.push().key!!
-//            val uid = firebaseAuth.uid.toString()
-//            //val transaction = Transactions(uid, binding.editTransactionLabel.text.toString(),
-//                binding.editTransactionAmount.text.toString().toDouble(), binding.editTransactionDate.text.toString(),
-//                binding.editTransactionType.text.toString())
-//
-//
-//                dbRef.child(transacId).setValue(transaction).addOnCompleteListener {
-//                    Toast.makeText(this, "Data inserted successfully", Toast.LENGTH_LONG).show()
-//
-//
-//                }.addOnFailureListener { err ->
-//                    Toast.makeText(this, "Error ${err.message}", Toast.LENGTH_LONG).show()
-//                }
+            val transacId = dbRef.push().key!!
+            val uid = firebaseAuth.uid.toString()
+            val transaction = Transactions(uid, binding.editTransactionLabel.text.toString(),
+                binding.editTransactionAmount.text.toString().toDouble(), binding.editTransactionDate.text.toString(),
+                binding.editTransactionType.text.toString())
+
+
+                dbRef.child(transacId).setValue(transaction).addOnCompleteListener {
+                    Toast.makeText(this, "Data inserted successfully", Toast.LENGTH_LONG).show()
+
+
+                }.addOnFailureListener { err ->
+                    Toast.makeText(this, "Error ${err.message}", Toast.LENGTH_LONG).show()
+                }
             val intent = Intent(this, Home::class.java)
             startActivity(intent)
             finish()
