@@ -46,7 +46,7 @@ class EditGoals : AppCompatActivity() {
         labelString = data?.getString(labelKey)!!
         amountString = data.getDouble(amountKey).toString()
         dateString = data.getString(dateKey)!!
-        startingString = data.getString(startingKey)!!
+        startingString = data.getDouble(startingKey).toString()
         goalsString = data.getString(goalsKey)!!
 
         binding.editGoalsLabel.setText(labelString)

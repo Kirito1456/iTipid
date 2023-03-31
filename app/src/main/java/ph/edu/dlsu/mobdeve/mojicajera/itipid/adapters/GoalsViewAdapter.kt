@@ -22,7 +22,7 @@ class GoalsViewAdapter (private val goalsList: ArrayList<Goals>)
         const val labelKey : String = "LABEL_KEY"
         const val amountKey : String = "AMOUNT_KEY"
         const val positionKey: String = "POSITION_KEY"
-        const val startingKey : String = "DESC_KEY"
+        const val startingKey : String = "STARTING_KEY"
         const val dateKey : String = "DATE_KEY"
         const val goalsKey : String = "GOAL_KEY"
     }

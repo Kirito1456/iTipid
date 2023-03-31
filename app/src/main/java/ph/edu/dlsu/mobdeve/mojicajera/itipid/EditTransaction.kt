@@ -1,5 +1,6 @@
 package ph.edu.dlsu.mobdeve.mojicajera.itipid
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -33,6 +34,7 @@ class EditTransaction : AppCompatActivity() {
     private lateinit var descriptionString: String
     private lateinit var transacString: String
     private lateinit var binding: ActivityEditTransactionBinding
+    @SuppressLint("SuspiciousIndentation")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityEditTransactionBinding.inflate(layoutInflater)
