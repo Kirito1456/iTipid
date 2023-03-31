@@ -102,7 +102,7 @@ class AddBalance : AppCompatActivity() {
 
         val transacId = dbRef.push().key!!
         val uid = firebaseAuth.uid.toString()
-        val transaction = Transactions(uid, transacName, transacAmount.toDouble(), transacDate, transacDescription)
+        val transaction = Transactions(uid, transacName, transacAmount.toDouble(), transacDate, transacDescription, transacId)
 
         if(transacName.isNotEmpty() && transacAmount.isNotEmpty() && transacDate.isNotEmpty() && transacDescription!="Transaction"){
             dbRef.child(transacId).setValue(transaction).addOnCompleteListener {

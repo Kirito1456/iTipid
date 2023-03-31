@@ -24,6 +24,7 @@ class RecyclerViewAdapter (private val transactionList: ArrayList<Transactions>)
         const val positionKey: String = "POSITION_KEY"
         const val descKey : String = "DESC_KEY"
         const val dateKey : String = "DATE_KEY"
+        const val transacKey : String = "TRANSAC_KEY"
     }
 
     var onItemClick : ((Transactions) -> Unit)? = null
@@ -57,6 +58,7 @@ class RecyclerViewAdapter (private val transactionList: ArrayList<Transactions>)
             transactionList[pos].amount?.let { it1 -> bundle.putDouble(amountKey, it1) }
             bundle.putString(dateKey, transactionList[pos].date)
             bundle.putString(descKey, transactionList[pos].description)
+            //bundle.putString(transacKey, transactionList[pos].)
             bundle.putInt(positionKey, pos)
 
             val intent = Intent(holder.itemView.context, EditTransaction::class.java)
