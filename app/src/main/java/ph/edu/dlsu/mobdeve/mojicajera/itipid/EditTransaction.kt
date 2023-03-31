@@ -42,7 +42,7 @@ class EditTransaction : AppCompatActivity() {
 
         val data = intent.extras
         labelString = data?.getString(labelKey)!!
-        amountString = data.getString(amountKey)!!
+        amountString = data.getDouble(amountKey).toString()
         dateString = data.getString(dateKey)!!
         descriptionString = data.getString(descKey)!!
 
