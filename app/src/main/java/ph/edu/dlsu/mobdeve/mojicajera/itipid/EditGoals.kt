@@ -69,13 +69,13 @@ class EditGoals : AppCompatActivity() {
             }.addOnFailureListener { err ->
                 Toast.makeText(this, "Error ${err.message}", Toast.LENGTH_LONG).show()
             }
-            val intent = Intent(this, GoalsFragment::class.java)
+            val intent = Intent(this, Home::class.java)
             startActivity(intent)
             finish()
         }
 
         binding.cancelButton.setOnClickListener {
-            val intent = Intent(this, GoalsFragment::class.java)
+            val intent = Intent(this, Home::class.java)
             startActivity(intent)
             finish()
 

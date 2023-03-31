@@ -1,10 +1,15 @@
 package ph.edu.dlsu.mobdeve.mojicajera.itipid.adapters
 
+import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import ph.edu.dlsu.mobdeve.mojicajera.itipid.EditBill
+import ph.edu.dlsu.mobdeve.mojicajera.itipid.EditTransaction
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.R
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.Bills
 
@@ -25,6 +30,21 @@ class BillsViewAdapter (private val billsList: ArrayList<Bills>)
         holder.label.text = bills.label
         holder.amount.text = bills.amount.toString()
         holder.date.text = bills.dueDate.toString()
+
+        holder.itemView.findViewById<ImageButton>(R.id.imageButton).setOnClickListener{
+            val pos:Int = holder.adapterPosition
+
+            val bundle = Bundle()
+            bundle.putString(RecyclerViewAdapter.labelKey, billsList[pos].label)
+            billsList[pos].amount?.let { it1 -> bundle.putDouble(RecyclerViewAdapter.amountKey, it1) }
+            bundle.putString(RecyclerViewAdapter.dateKey, billsList[pos].dueDate)
+
+            bundle.putInt(RecyclerViewAdapter.positionKey, pos)
+
+            val intent = Intent(holder.itemView.context, EditBill::class.java)
+            intent.putExtras(bundle)
+            holder.itemView.context.startActivity(intent)
+        }
 
 
     }

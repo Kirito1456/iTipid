@@ -46,9 +46,9 @@ class GoalsViewAdapter (private val goalsList: ArrayList<Goals>)
             val bundle = Bundle()
             bundle.putString(labelKey, goalsList[pos].label)
             goalsList[pos].startingAmount?.let { it1 -> bundle.putDouble(startingKey, it1) }
-            goalsList[pos].goalAmount?.let { it1 -> bundle.putDouble(amountKey, it1) }
+            goalsList[pos].goalAmount?.let { it2 -> bundle.putDouble(amountKey, it2) }
             bundle.putString(dateKey, goalsList[pos].date)
-            bundle.putString(goalsKey, goalsList[pos].goalId)
+            bundle.putString(goalsKey, goalsList[pos].goalID)
             bundle.putInt(positionKey, pos)
 
             val intent = Intent(holder.itemView.context, EditGoals::class.java)

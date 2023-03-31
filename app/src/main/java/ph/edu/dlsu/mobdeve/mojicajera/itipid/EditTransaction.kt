@@ -15,6 +15,7 @@ import ph.edu.dlsu.mobdeve.mojicajera.itipid.fragments.BillsFragment
 class EditTransaction : AppCompatActivity() {
 
     companion object {
+        const val transacKey : String = "TRANSAC_KEY"
         const val labelKey : String = "LABEL_KEY"
         const val amountKey : String = "AMOUNT_KEY"
         const val positionKey: String = "POSITION_KEY"
@@ -27,6 +28,7 @@ class EditTransaction : AppCompatActivity() {
     private lateinit var  firebase: FirebaseDatabase
 
 
+    private lateinit var transactString: String
     private lateinit var labelString: String
     private lateinit var amountString: String
     private lateinit var dateString: String
@@ -47,6 +49,7 @@ class EditTransaction : AppCompatActivity() {
         amountString = data.getDouble(amountKey).toString()
         dateString = data.getString(dateKey)!!
         descriptionString = data.getString(descKey)!!
+        transactString = data.getString(transacKey)!!
 
 
         binding.editTransactionLabel.setText(labelString)
@@ -55,16 +58,14 @@ class EditTransaction : AppCompatActivity() {
         binding.editTransactionType.setText(descriptionString)
 
         binding.saveButton.setOnClickListener {
-            val transacId = dbRef.push().key!!
+            val transacId = transactString
             val uid = firebaseAuth.uid.toString()
             val transaction = Transactions(uid, binding.editTransactionLabel.text.toString(),
                 binding.editTransactionAmount.text.toString().toDouble(), binding.editTransactionDate.text.toString(),
-                binding.editTransactionType.text.toString())
-
+                binding.editTransactionType.text.toString(), transacId)
 
                 dbRef.child(transacId).setValue(transaction).addOnCompleteListener {
                     Toast.makeText(this, "Data inserted successfully", Toast.LENGTH_LONG).show()
-
 
                 }.addOnFailureListener { err ->
                     Toast.makeText(this, "Error ${err.message}", Toast.LENGTH_LONG).show()

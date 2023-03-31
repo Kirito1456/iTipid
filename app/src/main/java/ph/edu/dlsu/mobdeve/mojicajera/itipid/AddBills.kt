@@ -60,7 +60,6 @@ class AddBills : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     private fun saveGoalsData(){
 
-
         // Get Values
         val billsName = etBillsLabel.text.toString()
         val billsAmount = etBillsAmount.text.toString()

@@ -4,11 +4,12 @@ import java.time.LocalDate
 import java.util.*
 
 class Bills(
-    val uid: String?= null,
-    val label: String?= null,
-    val amount: Double?= null,
-    val dueDate: String?= null,
-    val status: String?= null
-    ) {
+    var uid: String?= null,
+    var label: String?= null,
+    var amount: Double?= null,
+    var dueDate: String?= null,
+    var status: String?= null,
+    var billID: String?= null,
+) {
 
 }
