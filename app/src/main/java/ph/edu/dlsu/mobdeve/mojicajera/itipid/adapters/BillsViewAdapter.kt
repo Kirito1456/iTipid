@@ -16,6 +16,15 @@ import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.Bills
 
 class BillsViewAdapter (private val billsList: ArrayList<Bills>)
     : RecyclerView.Adapter<BillsViewAdapter.BillsViewHolder>() {
+
+    companion object {
+        const val labelKey : String = "LABEL_KEY"
+        const val amountKey : String = "AMOUNT_KEY"
+        const val positionKey: String = "POSITION_KEY"
+        const val dateKey : String = "DATE_KEY"
+        const val billsKey : String = "BILLS_KEY"
+    }
+
     var onItemClick: ((Bills) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BillsViewHolder {
@@ -39,7 +48,6 @@ class BillsViewAdapter (private val billsList: ArrayList<Bills>)
             billsList[pos].amount?.let { it1 -> bundle.putDouble(RecyclerViewAdapter.amountKey, it1) }
             bundle.putString(RecyclerViewAdapter.dateKey, billsList[pos].dueDate)
             bundle.putString(RecyclerViewAdapter.transacKey, billsList[pos].billID)
-
             bundle.putInt(RecyclerViewAdapter.positionKey, pos)
 
             val intent = Intent(holder.itemView.context, EditBill::class.java)

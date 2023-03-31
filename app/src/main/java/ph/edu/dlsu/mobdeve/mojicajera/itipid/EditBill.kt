@@ -13,11 +13,10 @@ import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.Bills
 
 class EditBill : AppCompatActivity() {
     companion object {
-        const val transacKey : String = "TRANSAC_KEY"
+        const val billsKey : String = "BILLS_KEY"
         const val labelKey : String = "LABEL_KEY"
         const val amountKey : String = "AMOUNT_KEY"
         const val positionKey: String = "POSITION_KEY"
-        const val descKey : String = "DESC_KEY"
         const val dateKey : String = "DATE_KEY"
     }
 
@@ -26,7 +25,7 @@ class EditBill : AppCompatActivity() {
     private lateinit var  firebase: FirebaseDatabase
 
 
-    private lateinit var transactString: String
+    private lateinit var billsString: String
     private lateinit var labelString: String
     private lateinit var amountString: String
     private lateinit var dateString: String
@@ -45,7 +44,7 @@ class EditBill : AppCompatActivity() {
         labelString = data?.getString(labelKey)!!
         amountString = data.getDouble(amountKey).toString()
         dateString = data.getString(dateKey)!!
-        transactString = data.getString(transacKey)!!
+        billsString = data.getString(billsKey)!!
 
 
         binding.editTransactionLabel.setText(labelString)
@@ -54,16 +53,16 @@ class EditBill : AppCompatActivity() {
 
 
         binding.saveButton.setOnClickListener {
-            val transacId = transactString
+            val billsId = billsString
             val uid = firebaseAuth.uid.toString()
-            val transaction = Bills(
+            val bills = Bills(
                 uid,
                 binding.editTransactionLabel.text.toString(),
                 binding.editTransactionAmount.text.toString().toDouble(),
-                binding.editTransactionDate.text.toString(),transacId)
+                binding.editTransactionDate.text.toString(),billsId)
 
 
-                dbRef.child(transacId).setValue(transaction).addOnCompleteListener {
+                dbRef.child(billsId).setValue(bills).addOnCompleteListener {
                     Toast.makeText(this, "Data inserted successfully", Toast.LENGTH_LONG).show()
 
 

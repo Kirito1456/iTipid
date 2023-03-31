@@ -77,7 +77,7 @@ class AddBills : AppCompatActivity() {
 
         val billsId = dbRef.push().key!!
         val uid = firebaseAuth.uid.toString()
-        val bills = Bills(uid, billsName,billsAmount.toDouble(), billsDate)
+        val bills = Bills(uid, billsName,billsAmount.toDouble(), billsDate, billsId)
 
         if(billsName.isNotEmpty() && billsAmount.isNotEmpty() && billsDate.isNotEmpty()){
             dbRef.child(billsId).setValue(bills).addOnCompleteListener {
