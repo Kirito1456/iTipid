@@ -82,7 +82,15 @@ class Home : AppCompatActivity() {
             }
         })
 
-        // logout Button
+
+        val homeButton = findViewById<ImageButton>(R.id.homeButton)
+        homeButton.setOnClickListener(){
+            mAuth.signOut()
+            val intent = Intent(this, Home::class.java)
+            startActivity(intent)
+        }
+
+
         val settingsButton = findViewById<ImageButton>(R.id.logoutButton)
         settingsButton.setOnClickListener(){
             mAuth.signOut()
@@ -91,18 +99,16 @@ class Home : AppCompatActivity() {
             finishAffinity()
         }
 
-        // Add Transaction Button
-
         addTransaction.setOnClickListener(){
             val intent = Intent(this, AddBalance::class.java)
             startActivity(intent)
         }
-        // Add Goals Button
+
         addGoalsButton.setOnClickListener(){
             val intent = Intent(this, AddGoals::class.java)
             startActivity(intent)
         }
-        // Add Bill Button
+
         val addBillButton = findViewById<ImageButton>(R.id.addBill)
         addBillButton.setOnClickListener(){
             val intent = Intent(this, AddBills::class.java)
