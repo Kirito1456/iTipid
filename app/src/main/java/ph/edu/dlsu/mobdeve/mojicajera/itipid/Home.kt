@@ -9,12 +9,16 @@ import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TableLayout
+import android.widget.TextView
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.adapters.FragmentPageAdapter
+import ph.edu.dlsu.mobdeve.mojicajera.itipid.adapters.RecyclerViewAdapter
+import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.Transactions
 
 class Home : AppCompatActivity() {
 
@@ -26,8 +30,9 @@ class Home : AppCompatActivity() {
     private lateinit var addTransaction: FloatingActionButton
     private lateinit var addBillsButton: FloatingActionButton
     private lateinit var addGoalsButton: FloatingActionButton
-
-
+    private lateinit var transactionList: ArrayList<Transactions>
+    private lateinit var database: DatabaseReference
+    //private lateinit var totalAmount: TextView
 
      private val rotateOpen: Animation by lazy {AnimationUtils.loadAnimation(this, R.anim.rotate_open_anim)}
      private val rotateClose: Animation by lazy {AnimationUtils.loadAnimation(this, R.anim.rotate_close_anim)}
@@ -53,7 +58,10 @@ class Home : AppCompatActivity() {
 
 
 
+
         mAuth = FirebaseAuth.getInstance()
+
+        totalAmount()
 
         tabLayout = findViewById(R.id.tabLayout)
         viewPager2 = findViewById(R.id.viewPager2)
@@ -177,4 +185,36 @@ class Home : AppCompatActivity() {
         }
     }
 
-}
+    private fun totalAmount(){
+        database = FirebaseDatabase.getInstance().getReference("Transactions")
+
+        var total  = 0.0
+
+        database.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                transactionList.clear()
+                if (snapshot.exists()) {
+                    for (snap in snapshot.children) {
+                        val transacData = snap.getValue(Transactions::class.java)
+                        transactionList.add(transacData!!)
+                    }
+                    for (i in transactionList) {
+                        if (i.description == "Income") {
+                            total += i.amount!!
+                        }else{
+                            total -= i.amount!!
+                        }
+                    }
+                    var totalAmount = findViewById<TextView>(R.id.Balance)
+                    totalAmount.text = total.toString()
+            }
+
+
+        }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
+
+}}

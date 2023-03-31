@@ -33,10 +33,10 @@ class EditTransaction : AppCompatActivity() {
         firebase = FirebaseDatabase.getInstance()
 
         val data = intent.extras
-        labelString = getIntent().getParcelableExtra("label")!!
-        amountString = getIntent().getParcelableExtra("amount")!!
-        dateString = getIntent().getParcelableExtra("date")!!
-        descriptionString = getIntent().getParcelableExtra("description")!!
+        labelString = getIntent().getStringExtra("label")!!
+        amountString = getIntent().getStringExtra("amount")!!
+        dateString = getIntent().getStringExtra("date")!!
+        descriptionString = getIntent().getStringExtra("description")!!
 
 
         binding.editTransactionLabel.setText(labelString)
