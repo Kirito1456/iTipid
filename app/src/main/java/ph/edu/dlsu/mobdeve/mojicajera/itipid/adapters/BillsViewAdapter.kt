@@ -38,6 +38,7 @@ class BillsViewAdapter (private val billsList: ArrayList<Bills>)
             bundle.putString(RecyclerViewAdapter.labelKey, billsList[pos].label)
             billsList[pos].amount?.let { it1 -> bundle.putDouble(RecyclerViewAdapter.amountKey, it1) }
             bundle.putString(RecyclerViewAdapter.dateKey, billsList[pos].dueDate)
+            bundle.putString(RecyclerViewAdapter.transacKey, billsList[pos].billID)
 
             bundle.putInt(RecyclerViewAdapter.positionKey, pos)
 

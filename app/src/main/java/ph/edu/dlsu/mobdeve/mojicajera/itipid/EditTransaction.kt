@@ -79,7 +79,6 @@ class EditTransaction : AppCompatActivity() {
             val intent = Intent(this, Home::class.java)
             startActivity(intent)
             finish()
-
         }
     }
 }
