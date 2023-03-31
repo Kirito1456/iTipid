@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.EditGoals
@@ -39,6 +40,12 @@ class GoalsViewAdapter (private val goalsList: ArrayList<Goals>)
         holder.label.text = goals.label
         holder.starting.text = goals.startingAmount.toString()
         holder.date.text = goals.date.toString()
+
+        val progress = (goals.startingAmount?.div(goals.goalAmount!!))?.times(100)
+
+        if (progress != null) {
+            holder.itemView.findViewById<ProgressBar>(R.id.progressBar).progress = progress.toInt()
+        }
 
         holder.itemView.findViewById<ImageButton>(R.id.imageButton).setOnClickListener{
             val pos:Int = holder.adapterPosition
