@@ -45,8 +45,8 @@ class Home : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-         val reportsButton: ImageButton = findViewById<ImageButton>(R.id.reportsButton)
 
+        transactionList = ArrayList()
         //Balance Edit TextView
         //
 
@@ -110,12 +110,6 @@ class Home : AppCompatActivity() {
 //            startActivity(intent)
 //        }
 
-        // Reports Button
-
-        reportsButton.setOnClickListener(){
-            val intent = Intent(this, Reports::class.java)
-            startActivity(intent)
-        }
 
         // Add Transaction Button
 
@@ -206,7 +200,7 @@ class Home : AppCompatActivity() {
                         }
                     }
                     var totalAmount = findViewById<TextView>(R.id.Balance)
-                    totalAmount.text = total.toString()
+                    totalAmount.text = "PHP ${total}"
             }
 
 
