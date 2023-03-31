@@ -38,7 +38,7 @@
 
 
         <EditText
-            android:id="@+id/editTransactionLabel"
+            android:id="@+id/editGoalsLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -47,7 +47,7 @@
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/editTransactionAmount"
+            android:id="@+id/editGoalsStarting"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -56,7 +56,7 @@
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/editTransactionType"
+            android:id="@+id/editGoalsAmount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -65,7 +65,7 @@
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/editTransactionDate"
+            android:id="@+id/editGoalsDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"

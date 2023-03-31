@@ -80,7 +80,7 @@ class AddGoals : AppCompatActivity() {
 
         val goalsId = dbRef.push().key!!
         val uid = firebaseAuth.uid.toString()
-        val goals = Goals(uid, goalsDate, goalsStarting.toDouble(), goalsAmount.toDouble(), goalsName)
+        val goals = Goals(uid, goalsDate, goalsStarting.toDouble(), goalsAmount.toDouble(), goalsName, goalsId)
 
         if(goalsName.isNotEmpty() && goalsAmount.isNotEmpty() && goalsDate.isNotEmpty() && goalsStarting.isNotEmpty()){
             dbRef.child(goalsId).setValue(goals).addOnCompleteListener {
