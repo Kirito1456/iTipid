@@ -2,6 +2,7 @@ package ph.edu.dlsu.mobdeve.mojicajera.itipid.adapters
 
 import android.content.Intent
 import android.graphics.Color
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +18,13 @@ import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.Transactions
 
 class RecyclerViewAdapter (private val transactionList: ArrayList<Transactions>)
     : RecyclerView.Adapter<RecyclerViewAdapter.TransactionViewHolder>()  {
+    companion object {
+        const val labelKey : String = "LABEL_KEY"
+        const val amountKey : String = "AMOUNT_KEY"
+        const val positionKey: String = "POSITION_KEY"
+        const val descKey : String = "DESC_KEY"
+        const val dateKey : String = "DATE_KEY"
+    }
 
     var onItemClick : ((Transactions) -> Unit)? = null
 
@@ -42,13 +50,17 @@ class RecyclerViewAdapter (private val transactionList: ArrayList<Transactions>)
 
 
         holder.itemView.findViewById<ImageButton>(R.id.editButton).setOnClickListener{
+            val pos:Int = holder.adapterPosition
+
+            val bundle = Bundle()
+            bundle.putString(labelKey, transactionList[pos].label)
+            transactionList[pos].amount?.let { it1 -> bundle.putDouble(amountKey, it1) }
+            bundle.putString(dateKey, transactionList[pos].date)
+            bundle.putString(descKey, transactionList[pos].description)
+            bundle.putInt(positionKey, pos)
+
             val intent = Intent(holder.itemView.context, EditTransaction::class.java)
-
-            intent.putExtra("label", transactionList[position].label)
-            intent.putExtra("amount", transactionList[position].amount)
-            intent.putExtra("date", transactionList[position].date)
-            intent.putExtra("description", transactionList[position].description)
-
+            intent.putExtras(bundle)
             holder.itemView.context.startActivity(intent)
         }
 
