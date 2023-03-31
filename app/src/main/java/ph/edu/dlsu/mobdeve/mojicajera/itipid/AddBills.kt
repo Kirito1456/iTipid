@@ -30,8 +30,6 @@ class AddBills : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_bills)
 
-
-
         etBillsLabel = findViewById(R.id.editTransactionLabel)
         etBillsAmount = findViewById(R.id.editTransactionAmount)
         etBillsDate = findViewById(R.id.editTransactionDate)
