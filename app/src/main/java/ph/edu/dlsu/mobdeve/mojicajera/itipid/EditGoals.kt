@@ -18,7 +18,7 @@ class EditGoals : AppCompatActivity() {
         const val labelKey : String = "LABEL_KEY"
         const val amountKey : String = "AMOUNT_KEY"
         const val positionKey: String = "POSITION_KEY"
-        const val startingKey : String = "DESC_KEY"
+        const val startingKey : String = "STARTING_KEY"
         const val dateKey : String = "DATE_KEY"
         const val goalsKey : String = "GOAL_KEY"
     }
@@ -44,15 +44,16 @@ class EditGoals : AppCompatActivity() {
 
         val data = intent.extras
         labelString = data?.getString(labelKey)!!
+        startingString = data.getDouble(startingKey).toString()
         amountString = data.getDouble(amountKey).toString()
         dateString = data.getString(dateKey)!!
-        startingString = data.getDouble(startingKey).toString()
         goalsString = data.getString(goalsKey)!!
 
         binding.editGoalsLabel.setText(labelString)
+        binding.editGoalsStarting.setText(startingString)
         binding.editGoalsAmount.setText(amountString)
         binding.editGoalsDate.setText(dateString)
-        binding.editGoalsStarting.setText(startingString)
+
 
         binding.saveButton.setOnClickListener {
             val goalsId = goalsString

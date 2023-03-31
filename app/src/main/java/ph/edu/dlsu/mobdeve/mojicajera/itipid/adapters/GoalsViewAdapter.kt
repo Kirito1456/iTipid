@@ -37,7 +37,7 @@ class GoalsViewAdapter (private val goalsList: ArrayList<Goals>)
     ) {
         val goals = goalsList[position]
         holder.label.text = goals.label
-        holder.amount.text = goals.startingAmount.toString()
+        holder.starting.text = goals.startingAmount.toString()
         holder.date.text = goals.date.toString()
 
         holder.itemView.findViewById<ImageButton>(R.id.imageButton).setOnClickListener{
@@ -63,7 +63,7 @@ class GoalsViewAdapter (private val goalsList: ArrayList<Goals>)
 
     class GoalsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val label: TextView = itemView.findViewById(R.id.editTransactionLabel)
-        val amount: TextView = itemView.findViewById(R.id.startingAmount)
+        val starting: TextView = itemView.findViewById(R.id.startingAmount)
         val date: TextView = itemView.findViewById(R.id.editTransactionDate)
     }
 }
