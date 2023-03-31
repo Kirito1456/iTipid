@@ -49,11 +49,11 @@ class BillsViewAdapter (private val billsList: ArrayList<Bills>)
             val pos:Int = holder.adapterPosition
 
             val bundle = Bundle()
-            bundle.putString(RecyclerViewAdapter.labelKey, billsList[pos].label)
-            billsList[pos].amount?.let { it1 -> bundle.putDouble(RecyclerViewAdapter.amountKey, it1) }
-            bundle.putString(RecyclerViewAdapter.dateKey, billsList[pos].dueDate)
-            bundle.putString(RecyclerViewAdapter.transacKey, billsList[pos].billID)
-            bundle.putInt(RecyclerViewAdapter.positionKey, pos)
+            bundle.putString(labelKey, billsList[pos].label)
+            billsList[pos].amount?.let { it1 -> bundle.putDouble(amountKey, it1) }
+            bundle.putString(dateKey, billsList[pos].dueDate)
+            bundle.putString(billsKey, billsList[pos].billID)
+            bundle.putInt(positionKey, pos)
 
             val intent = Intent(holder.itemView.context, EditBill::class.java)
             intent.putExtras(bundle)

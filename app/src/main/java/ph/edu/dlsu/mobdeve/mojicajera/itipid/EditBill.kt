@@ -59,7 +59,8 @@ class EditBill : AppCompatActivity() {
                 uid,
                 binding.editTransactionLabel.text.toString(),
                 binding.editTransactionAmount.text.toString().toDouble(),
-                binding.editTransactionDate.text.toString(),billsId)
+                binding.editTransactionDate.text.toString(),
+                billsId)
 
 
                 dbRef.child(billsId).setValue(bills).addOnCompleteListener {
