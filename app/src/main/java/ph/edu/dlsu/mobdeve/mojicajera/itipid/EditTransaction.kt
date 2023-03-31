@@ -19,6 +19,7 @@ class EditTransaction : AppCompatActivity() {
         const val positionKey: String = "POSITION_KEY"
         const val descKey : String = "DESC_KEY"
         const val dateKey : String = "DATE_KEY"
+        const val transacKey : String = "TRANSAC_KEY"
     }
 
     private lateinit var dbRef : DatabaseReference
@@ -30,6 +31,7 @@ class EditTransaction : AppCompatActivity() {
     private lateinit var amountString: String
     private lateinit var dateString: String
     private lateinit var descriptionString: String
+    private lateinit var transacString: String
     private lateinit var binding: ActivityEditTransactionBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,7 +47,7 @@ class EditTransaction : AppCompatActivity() {
         amountString = data.getDouble(amountKey).toString()
         dateString = data.getString(dateKey)!!
         descriptionString = data.getString(descKey)!!
-
+        transacString = data.getString(transacKey)!!
 
         binding.editTransactionLabel.setText(labelString)
         binding.editTransactionAmount.setText(amountString)
@@ -53,11 +55,11 @@ class EditTransaction : AppCompatActivity() {
         binding.editTransactionType.setText(descriptionString)
 
         binding.saveButton.setOnClickListener {
-            val transacId = dbRef.push().key!!
+            val transacId = transacString
             val uid = firebaseAuth.uid.toString()
             val transaction = Transactions(uid, binding.editTransactionLabel.text.toString(),
                 binding.editTransactionAmount.text.toString().toDouble(), binding.editTransactionDate.text.toString(),
-                binding.editTransactionType.text.toString())
+                binding.editTransactionType.text.toString(), transacId)
 
 
                 dbRef.child(transacId).setValue(transaction).addOnCompleteListener {
