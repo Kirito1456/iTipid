@@ -42,9 +42,9 @@ class RecyclerViewAdapter (private val transactionList: ArrayList<Transactions>)
 
 
         holder.itemView.findViewById<ImageButton>(R.id.editButton).setOnClickListener{
-            var intent = Intent(it.context, EditTransaction::class.java)
+            val intent = Intent(holder.itemView.context, EditTransaction::class.java)
 
-            intent.putExtra("label", transaction.label)
+            intent.putExtra("label", transactionList[position].label)
             intent.putExtra("amount", transactionList[position].amount)
             intent.putExtra("date", transactionList[position].date)
             intent.putExtra("description", transactionList[position].description)
