@@ -15,7 +15,6 @@ class Login : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(R.layout.activity_register)
 
-
         firebaseAuth = FirebaseAuth.getInstance()
         binding.createAccount.setOnClickListener{
             val intent = Intent(this, Register::class.java)
@@ -38,21 +37,10 @@ class Login : AppCompatActivity() {
                             Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
                         }
                     }
-
-
             }else{
                 Toast.makeText(this, "Empty Fields are not allowed!", Toast.LENGTH_SHORT).show()
 
             }
         }
     }
-
-//    override fun onStart() {
-//        super.onStart()
-//
-//        if(firebaseAuth.currentUser != null){
-//            val intent = Intent(this, Home::class.java)
-//            startActivity(intent)
-//        }
-//    }
 }

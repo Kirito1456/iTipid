@@ -49,6 +49,7 @@ class AddBalance : AppCompatActivity() {
         val saveButton = findViewById<Button>(R.id.saveButton)
         saveButton.setOnClickListener{
             saveTransactionData()
+
         }
 
         // Cancel Button
@@ -57,7 +58,6 @@ class AddBalance : AppCompatActivity() {
             val intent = Intent(this, Home::class.java)
             startActivity(intent)
         }
-
 
         // Income Button
         val incomeButton = findViewById<Button>(R.id.incomeButton)
@@ -76,12 +76,9 @@ class AddBalance : AppCompatActivity() {
 
         var arrayList : ArrayList<Transactions>
         val list = ArrayList<User>()
-
         val transactType: Boolean // True = Income, False = Expense
 
 
-
-        // Get Values
         val transacName = etTransacName.text.toString()
         val transacAmount = etTransacAmount.text.toString()
         val transacDate = etTransacDate.text.toString()
@@ -107,8 +104,9 @@ class AddBalance : AppCompatActivity() {
         if(transacName.isNotEmpty() && transacAmount.isNotEmpty() && transacDate.isNotEmpty() && transacDescription!="Transaction"){
             dbRef.child(transacId).setValue(transaction).addOnCompleteListener {
                 Toast.makeText(this, "Data inserted successfully", Toast.LENGTH_LONG).show()
-
-
+                val intent = Intent(this, Home::class.java)
+                startActivity(intent)
+                finish()
             }.addOnFailureListener { err ->
                 Toast.makeText(this, "Error ${err.message}", Toast.LENGTH_LONG).show()
             }

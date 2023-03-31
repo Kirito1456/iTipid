@@ -26,30 +26,24 @@ class Home : AppCompatActivity() {
      lateinit var viewPager2: ViewPager2
      lateinit var adapter : FragmentPageAdapter
      lateinit var mAuth: FirebaseAuth
-    private lateinit var mainButton: FloatingActionButton
-    private lateinit var addTransaction: FloatingActionButton
-    private lateinit var addBillsButton: FloatingActionButton
-    private lateinit var addGoalsButton: FloatingActionButton
-    private lateinit var transactionList: ArrayList<Transactions>
-    private lateinit var database: DatabaseReference
-    //private lateinit var totalAmount: TextView
 
-     private val rotateOpen: Animation by lazy {AnimationUtils.loadAnimation(this, R.anim.rotate_open_anim)}
-     private val rotateClose: Animation by lazy {AnimationUtils.loadAnimation(this, R.anim.rotate_close_anim)}
+     private lateinit var mainButton: FloatingActionButton
+     private lateinit var addTransaction: FloatingActionButton
+     private lateinit var addBillsButton: FloatingActionButton
+     private lateinit var addGoalsButton: FloatingActionButton
+     private lateinit var transactionList: ArrayList<Transactions>
+     private lateinit var database: DatabaseReference
+
      private val fromBottom: Animation by lazy {AnimationUtils.loadAnimation(this, R.anim.from_bottom_anim)}
      private val toBottom: Animation by lazy {AnimationUtils.loadAnimation(this, R.anim.to_bottom_anim)}
 
-    private var clicked = false
+     private var clicked = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-
         transactionList = ArrayList()
-        //Balance Edit TextView
-        //
-
 
         addTransaction = findViewById(R.id.addTransaction)
         addBillsButton = findViewById(R.id.addBill)
@@ -57,10 +51,7 @@ class Home : AppCompatActivity() {
         mainButton = findViewById(R.id.mainButton)
 
 
-
-
         mAuth = FirebaseAuth.getInstance()
-
         totalAmount()
 
         tabLayout = findViewById(R.id.tabLayout)
@@ -91,25 +82,14 @@ class Home : AppCompatActivity() {
             }
         })
 
-
-
-
         // logout Button
         val settingsButton = findViewById<ImageButton>(R.id.logoutButton)
         settingsButton.setOnClickListener(){
             mAuth.signOut()
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
-            finish()
+            finishAffinity()
         }
-
-        // add Button
-//        val addButton = findViewById<ImageButton>(R.id.addButton)
-//        addButton.setOnClickListener(){
-//            val intent = Intent(this, AddBalance::class.java)
-//            startActivity(intent)
-//        }
-
 
         // Add Transaction Button
 
@@ -118,7 +98,6 @@ class Home : AppCompatActivity() {
             startActivity(intent)
         }
         // Add Goals Button
-
         addGoalsButton.setOnClickListener(){
             val intent = Intent(this, AddGoals::class.java)
             startActivity(intent)
@@ -129,12 +108,6 @@ class Home : AppCompatActivity() {
             val intent = Intent(this, AddBills::class.java)
             startActivity(intent)
         }
-
-//        val balanceButton = findViewById<ImageButton>(R.id.balanceButton)
-//        balanceButton.setOnClickListener(){
-//            val intent = Intent(this, )
-//        }
-
 
         mainButton.setOnClickListener{
             onAddButtonClick()
@@ -206,9 +179,7 @@ class Home : AppCompatActivity() {
 
         }
 
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
+            override fun onCancelled(error: DatabaseError) {}
         })
 
 }}

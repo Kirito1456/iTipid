@@ -17,7 +17,6 @@ class AddGoals : AppCompatActivity() {
     private lateinit var etGoalsAmount: EditText
     private lateinit var etGoalsStarting: EditText
     private lateinit var etGoalsDate: EditText
-    //Buttons
 
     //Database Reference
     private lateinit var dbRef : DatabaseReference
@@ -28,8 +27,6 @@ class AddGoals : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_goals)
 
-
-
         etGoalsLabel = findViewById(R.id.editTransactionLabel)
         etGoalsAmount = findViewById(R.id.goalAmount)
         etGoalsStarting = findViewById(R.id.startingAmount)
@@ -39,27 +36,22 @@ class AddGoals : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
         firebase = FirebaseDatabase.getInstance()
 
-
-        // Save Button
+        //Save Button
         val saveButton = findViewById<Button>(R.id.saveButton)
         saveButton.setOnClickListener{
             saveGoalsData()
         }
 
-        // Cancel Button
+        //Cancel Button
         val cancelButton = findViewById<Button>(R.id.cancelButton)
         cancelButton.setOnClickListener(){
             val intent = Intent(this, Home::class.java)
             startActivity(intent)
         }
-
-
     }
 
     private fun saveGoalsData(){
 
-
-        // Get Values
         val goalsName = etGoalsLabel.text.toString()
         val goalsAmount = etGoalsAmount.text.toString()
         val goalsStarting= etGoalsStarting.text.toString()
@@ -85,11 +77,13 @@ class AddGoals : AppCompatActivity() {
         if(goalsName.isNotEmpty() && goalsAmount.isNotEmpty() && goalsDate.isNotEmpty() && goalsStarting.isNotEmpty()){
             dbRef.child(goalsId).setValue(goals).addOnCompleteListener {
                 Toast.makeText(this, "Data inserted successfully", Toast.LENGTH_LONG).show()
-
-
+                val intent = Intent(this, Home::class.java)
+                startActivity(intent)
+                finish()
             }.addOnFailureListener { err ->
                 Toast.makeText(this, "Error ${err.message}", Toast.LENGTH_LONG).show()
             }
+
         }
     }
 

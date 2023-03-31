@@ -59,8 +59,6 @@ class BillsViewAdapter (private val billsList: ArrayList<Bills>)
             intent.putExtras(bundle)
             holder.itemView.context.startActivity(intent)
         }
-
-
     }
 
     override fun getItemCount(): Int {

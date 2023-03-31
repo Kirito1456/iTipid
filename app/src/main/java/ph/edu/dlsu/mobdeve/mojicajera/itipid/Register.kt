@@ -8,9 +8,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.databinding.ActivityRegisterBinding
-import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.Bills
-import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.Goals
-import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.Transactions
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.User
 
 class Register : AppCompatActivity() {
@@ -22,17 +19,14 @@ class Register : AppCompatActivity() {
 
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         firebaseAuth = FirebaseAuth.getInstance()
         dbRef = FirebaseDatabase.getInstance().getReference("User")
-
 
         binding.SubmitButton.setOnClickListener(){
 
             val username = binding.Username.text.toString()
             val pass = binding.Password.text.toString()
             val confirmPass = binding.ConfirmPassword.text.toString()
-
 
             if(username.isNotEmpty() && pass.isNotEmpty() && confirmPass.isNotEmpty()){
                 if(pass == confirmPass){
@@ -59,7 +53,6 @@ class Register : AppCompatActivity() {
         val username = binding.Username.text.toString()
         val pass = binding.Password.text.toString()
         val userId = firebaseAuth.uid.toString()
-
         val user = User(userId, username, pass)
 
         dbRef.child(userId).setValue(user)

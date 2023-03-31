@@ -14,11 +14,10 @@ import com.google.firebase.database.FirebaseDatabase
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.Bills
 
 class AddBills : AppCompatActivity() {
-    //EditTextViews
+
     private lateinit var etBillsLabel: EditText
     private lateinit var etBillsAmount: EditText
     private lateinit var etBillsDate: EditText
-    //Buttons
 
     //Database Reference
     private lateinit var dbRef : DatabaseReference
@@ -38,27 +37,24 @@ class AddBills : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
         firebase = FirebaseDatabase.getInstance()
 
-
-        // Save Button
+        //Save Button
         val saveButton = findViewById<Button>(R.id.saveButton)
         saveButton.setOnClickListener{
             saveGoalsData()
         }
 
-        // Cancel Button
+        //Cancel Button
         val cancelButton = findViewById<Button>(R.id.cancelButton)
         cancelButton.setOnClickListener(){
             val intent = Intent(this, Home::class.java)
             startActivity(intent)
         }
 
-
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun saveGoalsData(){
 
-        // Get Values
         val billsName = etBillsLabel.text.toString()
         val billsAmount = etBillsAmount.text.toString()
         val billsDate = etBillsDate.text.toString()
@@ -80,8 +76,9 @@ class AddBills : AppCompatActivity() {
         if(billsName.isNotEmpty() && billsAmount.isNotEmpty() && billsDate.isNotEmpty()){
             dbRef.child(billsId).setValue(bills).addOnCompleteListener {
                 Toast.makeText(this, "Data inserted successfully", Toast.LENGTH_LONG).show()
-
-
+                val intent = Intent(this, Home::class.java)
+                startActivity(intent)
+                finish()
             }.addOnFailureListener { err ->
                 Toast.makeText(this, "Error ${err.message}", Toast.LENGTH_LONG).show()
             }

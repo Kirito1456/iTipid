@@ -60,7 +60,7 @@ class EditGoals : AppCompatActivity() {
                 binding.editGoalsLabel.text.toString(), goalsId)
 
             dbRef.child(goalsId).setValue(goals).addOnCompleteListener {
-                Toast.makeText(this, "Data inserted successfully", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Data Updated successfully", Toast.LENGTH_LONG).show()
 
             }.addOnFailureListener { err ->
                 Toast.makeText(this, "Error ${err.message}", Toast.LENGTH_LONG).show()

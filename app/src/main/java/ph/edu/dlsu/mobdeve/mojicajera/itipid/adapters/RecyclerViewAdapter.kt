@@ -42,7 +42,6 @@ class RecyclerViewAdapter (private val transactionList: ArrayList<Transactions>)
         holder.date.text = transaction.date
         holder.type.text = transaction.description
 
-
         if(holder.type.text == "Income"){
             holder.amount.text = "+ %.2f".format(transaction.amount)
             holder.amount.setTextColor(Color.parseColor("#00FF00"))
