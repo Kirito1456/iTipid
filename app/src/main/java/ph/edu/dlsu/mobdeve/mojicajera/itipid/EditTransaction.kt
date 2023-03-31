@@ -1,6 +1,5 @@
 package ph.edu.dlsu.mobdeve.mojicajera.itipid
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,7 +9,6 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.databinding.ActivityEditTransactionBinding
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.Transactions
-import ph.edu.dlsu.mobdeve.mojicajera.itipid.fragments.BillsFragment
 
 class EditTransaction : AppCompatActivity() {
 
@@ -18,15 +16,15 @@ class EditTransaction : AppCompatActivity() {
         const val transacKey : String = "TRANSAC_KEY"
         const val labelKey : String = "LABEL_KEY"
         const val amountKey : String = "AMOUNT_KEY"
-        const val positionKey: String = "POSITION_KEY"
+        //const val positionKey: String = "POSITION_KEY"
         const val descKey : String = "DESC_KEY"
         const val dateKey : String = "DATE_KEY"
     }
 
+    //Database References
     private lateinit var dbRef : DatabaseReference
     private lateinit var  firebaseAuth: FirebaseAuth
     private lateinit var  firebase: FirebaseDatabase
-
 
     private lateinit var transactString: String
     private lateinit var labelString: String
@@ -34,7 +32,7 @@ class EditTransaction : AppCompatActivity() {
     private lateinit var dateString: String
     private lateinit var descriptionString: String
     private lateinit var binding: ActivityEditTransactionBinding
-    @SuppressLint("SuspiciousIndentation")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityEditTransactionBinding.inflate(layoutInflater)
@@ -57,6 +55,7 @@ class EditTransaction : AppCompatActivity() {
         binding.editTransactionDate.setText(dateString)
         binding.editTransactionType.setText(descriptionString)
 
+        //Save Edited Text
         binding.saveButton.setOnClickListener {
             val transacId = transactString
             val uid = firebaseAuth.uid.toString()
@@ -73,7 +72,7 @@ class EditTransaction : AppCompatActivity() {
             val intent = Intent(this, Home::class.java)
             startActivity(intent)
             finish()
-    }
+        }
 
         binding.cancelButton.setOnClickListener {
             val intent = Intent(this, Home::class.java)

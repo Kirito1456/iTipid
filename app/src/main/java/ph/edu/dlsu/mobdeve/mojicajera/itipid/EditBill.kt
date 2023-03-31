@@ -8,7 +8,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.databinding.ActivityEditBillBinding
-import ph.edu.dlsu.mobdeve.mojicajera.itipid.databinding.ActivityEditTransactionBinding
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.Bills
 
 class EditBill : AppCompatActivity() {
@@ -16,14 +15,14 @@ class EditBill : AppCompatActivity() {
         const val billsKey : String = "BILLS_KEY"
         const val labelKey : String = "LABEL_KEY"
         const val amountKey : String = "AMOUNT_KEY"
-        const val positionKey: String = "POSITION_KEY"
+        //const val positionKey: String = "POSITION_KEY"
         const val dateKey : String = "DATE_KEY"
     }
 
+    //Database Reference
     private lateinit var dbRef : DatabaseReference
     private lateinit var  firebaseAuth: FirebaseAuth
     private lateinit var  firebase: FirebaseDatabase
-
 
     private lateinit var billsString: String
     private lateinit var labelString: String
@@ -46,12 +45,11 @@ class EditBill : AppCompatActivity() {
         dateString = data.getString(dateKey)!!
         billsString = data.getString(billsKey)!!
 
-
         binding.editTransactionLabel.setText(labelString)
         binding.editTransactionAmount.setText(amountString)
         binding.editTransactionDate.setText(dateString)
 
-
+        //Save Edited Data
         binding.saveButton.setOnClickListener {
             val billsId = billsString
             val uid = firebaseAuth.uid.toString()
@@ -62,10 +60,8 @@ class EditBill : AppCompatActivity() {
                 binding.editTransactionDate.text.toString(),
                 billsId)
 
-
                 dbRef.child(billsId).setValue(bills).addOnCompleteListener {
                     Toast.makeText(this, "Data inserted successfully", Toast.LENGTH_LONG).show()
-
 
                 }.addOnFailureListener { err ->
                     Toast.makeText(this, "Error ${err.message}", Toast.LENGTH_LONG).show()
@@ -73,13 +69,12 @@ class EditBill : AppCompatActivity() {
             val intent = Intent(this, Home::class.java)
             startActivity(intent)
             finish()
-    }
+        }
 
         binding.cancelButton.setOnClickListener {
             val intent = Intent(this, Home::class.java)
             startActivity(intent)
             finish()
-
         }
     }
 }

@@ -10,9 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.R
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.Bills
-import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.Goals
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.adapters.BillsViewAdapter
-import ph.edu.dlsu.mobdeve.mojicajera.itipid.adapters.GoalsViewAdapter
 
 
 class BillsFragment : Fragment() {
@@ -23,12 +21,6 @@ class BillsFragment : Fragment() {
     private lateinit var billsAdapter: BillsViewAdapter
     private lateinit var database: DatabaseReference
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -36,8 +28,6 @@ class BillsFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_bills, container, false)
         recyclerView = view.findViewById(R.id.billsRecycler)
-
-        // TO DO: Fetch Data From FireBase
 
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.setHasFixedSize(true)
@@ -48,7 +38,6 @@ class BillsFragment : Fragment() {
 
         getTransactionData()
 
-
         return view
     }
 
@@ -56,8 +45,6 @@ class BillsFragment : Fragment() {
     private fun getTransactionData() {
         recyclerView.visibility = View.GONE
         database = FirebaseDatabase.getInstance().getReference("Bills")
-
-
 
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -75,7 +62,6 @@ class BillsFragment : Fragment() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
             }
 
         })

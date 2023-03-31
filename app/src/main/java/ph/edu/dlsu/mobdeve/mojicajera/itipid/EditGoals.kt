@@ -8,24 +8,21 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.databinding.ActivityEditGoalsBinding
-import ph.edu.dlsu.mobdeve.mojicajera.itipid.databinding.ActivityEditTransactionBinding
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.Goals
-import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.Transactions
-import ph.edu.dlsu.mobdeve.mojicajera.itipid.fragments.GoalsFragment
 
 class EditGoals : AppCompatActivity() {
     companion object {
         const val labelKey : String = "LABEL_KEY"
         const val amountKey : String = "AMOUNT_KEY"
-        const val positionKey: String = "POSITION_KEY"
+        //const val positionKey: String = "POSITION_KEY"
         const val startingKey : String = "STARTING_KEY"
         const val dateKey : String = "DATE_KEY"
         const val goalsKey : String = "GOAL_KEY"
     }
+    //Database References
     private lateinit var dbRef : DatabaseReference
     private lateinit var  firebaseAuth: FirebaseAuth
     private lateinit var  firebase: FirebaseDatabase
-
 
     private lateinit var labelString: String
     private lateinit var amountString: String
@@ -54,7 +51,7 @@ class EditGoals : AppCompatActivity() {
         binding.editGoalsAmount.setText(amountString)
         binding.editGoalsDate.setText(dateString)
 
-
+        //save Edited Text
         binding.saveButton.setOnClickListener {
             val goalsId = goalsString
             val uid = firebaseAuth.uid.toString()
@@ -62,10 +59,8 @@ class EditGoals : AppCompatActivity() {
                 binding.editGoalsStarting.text.toString().toDouble(), binding.editGoalsAmount.text.toString().toDouble(),
                 binding.editGoalsLabel.text.toString(), goalsId)
 
-
             dbRef.child(goalsId).setValue(goals).addOnCompleteListener {
                 Toast.makeText(this, "Data inserted successfully", Toast.LENGTH_LONG).show()
-
 
             }.addOnFailureListener { err ->
                 Toast.makeText(this, "Error ${err.message}", Toast.LENGTH_LONG).show()

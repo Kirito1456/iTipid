@@ -1,7 +1,5 @@
 package ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass
 
-import java.time.LocalDate
-import java.util.*
 
 class Bills(
     var uid: String?= null,
@@ -9,7 +7,7 @@ class Bills(
     var amount: Double?= null,
     var dueDate: String?= null,
     var billID: String?= null,
-    var status: String?= null,
+    //var status: String?= null,
 ) {
 
 }

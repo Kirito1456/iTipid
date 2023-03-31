@@ -10,30 +10,20 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.R
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.Goals
-import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.Transactions
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.adapters.GoalsViewAdapter
-import ph.edu.dlsu.mobdeve.mojicajera.itipid.adapters.RecyclerViewAdapter
 
 
 class GoalsFragment : Fragment() {
-
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var goalsList: ArrayList<Goals>
     private lateinit var goalsAdapter: GoalsViewAdapter
     private lateinit var database: DatabaseReference
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_goals, container, false)
         recyclerView = view.findViewById(R.id.goalsRecycler)
 
-        // TO DO: Fetch Data From FireBase
 
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.setHasFixedSize(true)
@@ -44,7 +34,6 @@ class GoalsFragment : Fragment() {
 
         getTransactionData()
 
-
         return view
     }
 
@@ -52,8 +41,6 @@ class GoalsFragment : Fragment() {
     private fun getTransactionData(){
         recyclerView.visibility = View.GONE
         database = FirebaseDatabase.getInstance().getReference("Goals")
-
-
 
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -71,7 +58,6 @@ class GoalsFragment : Fragment() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
             }
 
         })
