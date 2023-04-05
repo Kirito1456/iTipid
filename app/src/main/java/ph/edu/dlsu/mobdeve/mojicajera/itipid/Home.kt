@@ -172,10 +172,12 @@ class Home : AppCompatActivity() {
                         transactionList.add(transacData!!)
                     }
                     for (i in transactionList) {
-                        if (i.description == "Income") {
-                            total += i.amount!!
-                        }else{
-                            total -= i.amount!!
+                        if(i.uid == mAuth.uid){
+                            if (i.description == "Income") {
+                                total += i.amount!!
+                            }else{
+                                total -= i.amount!!
+                            }
                         }
                     }
                     var totalAmount = findViewById<TextView>(R.id.Balance)
