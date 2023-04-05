@@ -19,6 +19,7 @@ class DailyFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var transactionList: ArrayList<Transactions>
     private lateinit var transactionTemp: ArrayList<Transactions>
+    private lateinit var temp: ArrayList<Transactions>
     private lateinit var transactionAdapter: RecyclerViewAdapter
     private lateinit var database: DatabaseReference
     private lateinit var  firebaseAuth: FirebaseAuth
@@ -34,6 +35,7 @@ class DailyFragment : Fragment() {
 
         transactionList = ArrayList()
         transactionTemp = ArrayList()
+        temp = ArrayList()
         transactionAdapter =  RecyclerViewAdapter(transactionList)
         recyclerView.adapter = transactionAdapter
         firebaseAuth = FirebaseAuth.getInstance()
@@ -72,6 +74,7 @@ class DailyFragment : Fragment() {
                         transactionTemp.add(i)
                     }
                 }
+                transactionTemp.reverse()
                 val mAdapter =  RecyclerViewAdapter(transactionTemp)
                 recyclerView.adapter = mAdapter
 
