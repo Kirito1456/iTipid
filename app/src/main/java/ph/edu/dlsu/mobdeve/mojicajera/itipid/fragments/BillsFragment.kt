@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.R
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.Bills
@@ -18,8 +19,10 @@ class BillsFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var billsList: ArrayList<Bills>
+    private lateinit var billsTemp: ArrayList<Bills>
     private lateinit var billsAdapter: BillsViewAdapter
     private lateinit var database: DatabaseReference
+    private lateinit var  firebaseAuth: FirebaseAuth
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,9 +36,10 @@ class BillsFragment : Fragment() {
         recyclerView.setHasFixedSize(true)
 
         billsList = ArrayList()
+        billsTemp = ArrayList()
         billsAdapter = BillsViewAdapter(billsList)
         recyclerView.adapter = billsAdapter
-
+        firebaseAuth = FirebaseAuth.getInstance()
         getTransactionData()
 
         return view
@@ -44,6 +48,7 @@ class BillsFragment : Fragment() {
 
     private fun getTransactionData() {
         recyclerView.visibility = View.GONE
+        val id = firebaseAuth.uid
         database = FirebaseDatabase.getInstance().getReference("Bills")
 
         database.addValueEventListener(object : ValueEventListener {
@@ -54,7 +59,12 @@ class BillsFragment : Fragment() {
                         val billsData = empSnap.getValue(Bills::class.java)
                         billsList.add(billsData!!)
                     }
-                    val mAdapter = BillsViewAdapter(billsList)
+                    for (i in billsList){
+                        if(i.uid == id){
+                            billsTemp.add(i)
+                        }
+                    }
+                    val mAdapter = BillsViewAdapter(billsTemp)
                     recyclerView.adapter = mAdapter
 
                     recyclerView.visibility = View.VISIBLE
