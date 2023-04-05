@@ -100,10 +100,10 @@ class AddBalance : AppCompatActivity() {
         val transacId = dbRef.push().key!!
         val uid = firebaseAuth.uid.toString()
         val transaction = Transactions(uid, transacName, transacAmount.toDouble(), transacDate, transacDescription, transacId)
-        val push = dbRef.child(transacId).push()
+
 
         if(transacName.isNotEmpty() && transacAmount.isNotEmpty() && transacDate.isNotEmpty() && transacDescription!="Transaction"){
-            push.setValue(transaction).addOnCompleteListener {
+            dbRef.child(transacId).push().setValue(transaction).addOnCompleteListener {
                 Toast.makeText(this, "Data inserted successfully", Toast.LENGTH_LONG).show()
                 val intent = Intent(this, Home::class.java)
                 startActivity(intent)
