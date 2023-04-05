@@ -43,13 +43,6 @@ class DailyFragment : Fragment() {
         return view
     }
 
-    // TODO : Update DashBoard
-//    private fun updateDashBoard(){
-//
-//        val totalIncome : Double = transactionList.map{it.amount}.sum()
-//        val totalExpense : Double = transactionList.filter{ it.amount!! > 0.0 }.map{it.amount}.sum()
-//
-//    }
 
     private fun getTransactionData(){
     recyclerView.visibility = View.GONE
