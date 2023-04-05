@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.R
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.Transactions
@@ -17,8 +18,10 @@ class DailyFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var transactionList: ArrayList<Transactions>
+    private lateinit var transactionTemp: ArrayList<Transactions>
     private lateinit var transactionAdapter: RecyclerViewAdapter
     private lateinit var database: DatabaseReference
+    private lateinit var  firebaseAuth: FirebaseAuth
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -30,9 +33,10 @@ class DailyFragment : Fragment() {
         recyclerView.setHasFixedSize(true)
 
         transactionList = ArrayList()
+        transactionTemp = ArrayList()
         transactionAdapter =  RecyclerViewAdapter(transactionList)
         recyclerView.adapter = transactionAdapter
-
+        firebaseAuth = FirebaseAuth.getInstance()
          getTransactionData()
 
 
@@ -49,6 +53,8 @@ class DailyFragment : Fragment() {
 
     private fun getTransactionData(){
     recyclerView.visibility = View.GONE
+        val id = firebaseAuth.uid.toString()
+
     database = FirebaseDatabase.getInstance().getReference("Transactions")
 
 
@@ -61,7 +67,12 @@ class DailyFragment : Fragment() {
                     val transacData = empSnap.getValue(Transactions::class.java)
                     transactionList.add(transacData!!)
                 }
-                val mAdapter =  RecyclerViewAdapter(transactionList)
+                for(i in transactionList){
+                    if(i.uid == id){
+                        transactionTemp.add(i)
+                    }
+                }
+                val mAdapter =  RecyclerViewAdapter(transactionTemp)
                 recyclerView.adapter = mAdapter
 
                 recyclerView.visibility = View.VISIBLE
