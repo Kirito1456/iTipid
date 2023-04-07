@@ -83,17 +83,16 @@ class EditTransaction : AppCompatActivity() {
             builder.setPositiveButton("Yes") { dialogInterface, which ->
                 val transacId = transactString
                 dbRef.child(transacId).removeValue()
-                Toast.makeText(applicationContext, "clicked yes", Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, "Deleted Successfully", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, Home::class.java)
                 startActivity(intent)
                 finish()
             }
             builder.setNegativeButton("No") { dialogInterface, which ->
-                Toast.makeText(applicationContext, "clicked No", Toast.LENGTH_SHORT).show()
             }
-            // Create the AlertDialog
+
             val alertDialog: AlertDialog = builder.create()
-            // Set other dialog properties
+
             alertDialog.setCancelable(false)
             alertDialog.show()
 
