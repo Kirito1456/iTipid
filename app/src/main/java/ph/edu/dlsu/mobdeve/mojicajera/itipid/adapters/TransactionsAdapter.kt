@@ -33,7 +33,7 @@ class TransactionsAdapter(private val billsList: ArrayList<Bills>, private val g
 
     override fun onBindViewHolder(holder: EventsViewHolder, position: Int) {
         val bills = billsList[position]
-        holder.label.text = bills.label
+      //  holder.label.text = bills.label
 //        holder.amount.text = bills.amount.toString()
 //        holder.date.text = bills.dueDate.toString()
     }
@@ -44,7 +44,7 @@ class TransactionsAdapter(private val billsList: ArrayList<Bills>, private val g
     }
 
     class EventsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val label: TextView = itemView.findViewById(R.id.)
+        //val label: TextView = itemView.findViewById(R.id.)
 
     }
 }

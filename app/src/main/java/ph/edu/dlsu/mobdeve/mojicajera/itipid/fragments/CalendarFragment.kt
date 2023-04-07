@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CalendarView
 import android.widget.TextView
-import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -18,7 +18,7 @@ import java.text.DateFormatSymbols
 
 
 class CalendarFragment : Fragment() {
-    private lateinit var recyclerView: RecyclerView
+    private lateinit var billsRecycler: RecyclerView
     private lateinit var billsList: ArrayList<Bills>
     private lateinit var billsTemp: ArrayList<Bills>
     private lateinit var billsAdapter: BillsViewAdapter
@@ -32,6 +32,7 @@ class CalendarFragment : Fragment() {
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_calendar, container, false)
 
+
         val calendarView = view.findViewById<CalendarView>(R.id.calendarView)
         val textView = view.findViewById<TextView>(R.id.selectedDate)
         calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
@@ -39,12 +40,15 @@ class CalendarFragment : Fragment() {
             var date = convertDateFormat(dateSet)
             textView.text = "$dateSet"
         }
-        //val billsList = billsData.getTransactionData()
 
-            billsList = ArrayList()
+        billsRecycler = view.findViewById(R.id.billsRecycler)
+        billsRecycler.layoutManager = LinearLayoutManager(activity)
+        billsRecycler.setHasFixedSize(true)
+
+        billsList = ArrayList()
         billsTemp = ArrayList()
         billsAdapter = BillsViewAdapter(billsList)
-        recyclerView.adapter = billsAdapter
+        billsRecycler.adapter = billsAdapter
         firebaseAuth = FirebaseAuth.getInstance()
         getBillsData()
 
@@ -52,7 +56,7 @@ class CalendarFragment : Fragment() {
     }
 
     private fun getBillsData() {
-        recyclerView.visibility = View.GONE
+        billsRecycler.visibility = View.GONE
         val id = firebaseAuth.uid
         database = FirebaseDatabase.getInstance().getReference("Bills")
 
@@ -73,9 +77,9 @@ class CalendarFragment : Fragment() {
                         }
                     }
                     val mAdapter = BillsViewAdapter(billsTemp)
-                    recyclerView.adapter = mAdapter
+                    billsRecycler.adapter = mAdapter
 
-                    recyclerView.visibility = View.VISIBLE
+                    billsRecycler.visibility = View.VISIBLE
                 }
             }
 
