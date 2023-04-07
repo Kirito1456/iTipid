@@ -42,7 +42,7 @@ class GoalsFragment : Fragment() {
     }
 
 
-    private fun getTransactionData(){
+     fun getTransactionData(){
         recyclerView.visibility = View.GONE
         val id = firebaseAuth.uid
         database = FirebaseDatabase.getInstance().getReference("Goals")
