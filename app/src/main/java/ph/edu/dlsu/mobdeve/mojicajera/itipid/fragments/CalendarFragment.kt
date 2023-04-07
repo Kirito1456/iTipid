@@ -5,9 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
+import android.widget.CalendarView
+import android.widget.TextView
+import android.widget.Toast
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.R
-import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.Transactions
+import java.text.DateFormatSymbols
 
 
 class CalendarFragment : Fragment() {
@@ -17,37 +19,27 @@ class CalendarFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_calendar, container, false)
 
-
+        val calendarView = view.findViewById<CalendarView>(R.id.calendarView)
+        val textView = view.findViewById<TextView>(R.id.selectedDate)
+        calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
+            dateSet = String.format("%02d/%02d/%04d", month+1, dayOfMonth, year)
+            var date = convertDateFormat(dateSet)
+            textView.text = "$dateSet"
+        }
         return view
     }
-
-
-    fun getTransactionsForDate(date: String): ArrayList<bills> {
-        // Query your database or API for all transactions on the specified date
-        // For example:
-        val transactions = mutableListOf<Transactions>()
-        val query = "SELECT * FROM transactions WHERE date = '$date'"
-        val cursor = db.rawQuery(query, null)
-        if (cursor.moveToFirst()) {
-            do {
-                val transaction = Transactions(
-                    cursor.getString(cursor.getColumnIndex("uid")),
-                    cursor.getString(cursor.getColumnIndex("label")),
-                    cursor.getDouble(cursor.getColumnIndex("amount")),
-                    cursor.getString(cursor.getColumnIndex("date")),
-                    cursor.getString(cursor.getColumnIndex("description")),
-                    cursor.getString(cursor.getColumnIndex("transactionID"))
-                )
-                transactions.add(transaction)
-            } while (cursor.moveToNext())
-        }
-        cursor.close()
-        return transactions
-    }
-
-
 }
 
+fun convertDateFormat(inputDate: String): String {
+    val dateParts = inputDate.split("/")
+    val month = dateParts[0].toInt()
+    val day = dateParts[1].toInt()
+    val year = dateParts[2]
+
+    val monthString = DateFormatSymbols().months[month - 1]
+    return "$year, $monthString $day"
+}
 
