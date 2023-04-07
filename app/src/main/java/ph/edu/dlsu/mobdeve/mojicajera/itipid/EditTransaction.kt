@@ -74,6 +74,14 @@ class EditTransaction : AppCompatActivity() {
             finish()
         }
 
+        binding.deleteButton.setOnClickListener {
+            val transacId = transactString
+            dbRef.child(transacId).removeValue()
+            val intent = Intent(this, Home::class.java)
+            startActivity(intent)
+            finish()
+        }
+
         binding.cancelButton.setOnClickListener {
             val intent = Intent(this, Home::class.java)
             startActivity(intent)
