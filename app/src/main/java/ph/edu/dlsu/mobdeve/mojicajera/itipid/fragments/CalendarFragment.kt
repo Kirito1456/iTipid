@@ -13,7 +13,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.R
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.adapters.BillsViewAdapter
+import ph.edu.dlsu.mobdeve.mojicajera.itipid.adapters.GoalsViewAdapter
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.Bills
+import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.Goals
 import java.text.DateFormatSymbols
 
 
@@ -22,6 +24,12 @@ class CalendarFragment : Fragment() {
     private lateinit var billsList: ArrayList<Bills>
     private lateinit var billsTemp: ArrayList<Bills>
     private lateinit var billsAdapter: BillsViewAdapter
+
+    private lateinit var goalsRecycler: RecyclerView
+    private lateinit var goalsList: ArrayList<Goals>
+    private lateinit var goalsTemp: ArrayList<Goals>
+    private lateinit var goalsAdapter: GoalsViewAdapter
+
     private lateinit var database: DatabaseReference
     private lateinit var  firebaseAuth: FirebaseAuth
     private lateinit var dateSet: String
@@ -32,25 +40,42 @@ class CalendarFragment : Fragment() {
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_calendar, container, false)
 
-
-        val calendarView = view.findViewById<CalendarView>(R.id.calendarView)
-        val textView = view.findViewById<TextView>(R.id.selectedDate)
-        calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
-            dateSet = String.format("%02d/%02d/%04d", month+1, dayOfMonth, year)
-            var date = convertDateFormat(dateSet)
-            textView.text = "$dateSet"
-        }
-
+        dateSet = "04/02/2001"
         billsRecycler = view.findViewById(R.id.billsRecycler)
         billsRecycler.layoutManager = LinearLayoutManager(activity)
         billsRecycler.setHasFixedSize(true)
-
         billsList = ArrayList()
         billsTemp = ArrayList()
         billsAdapter = BillsViewAdapter(billsList)
         billsRecycler.adapter = billsAdapter
+
+        goalsRecycler = view.findViewById(R.id.eventsRecyler)
+        goalsRecycler.layoutManager = LinearLayoutManager(activity)
+        goalsRecycler.setHasFixedSize(true)
+        goalsList = ArrayList()
+        goalsTemp = ArrayList()
+        goalsAdapter = GoalsViewAdapter(goalsList)
+        goalsRecycler.adapter = billsAdapter
+
+
+
         firebaseAuth = FirebaseAuth.getInstance()
-        getBillsData()
+
+
+        val calendarView = view.findViewById<CalendarView>(R.id.calendarView)
+        val textView = view.findViewById<TextView>(R.id.selectedDate)
+
+        calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
+            dateSet = String.format("%02d/%02d/%04d", month+1, dayOfMonth, year)
+            var date = convertDateFormat(dateSet)
+            textView.text = "$dateSet"
+            billsTemp.clear() // Clear the bills list
+            goalsTemp.clear()
+            getBillsData()
+            getTransactionData()
+        }
+
+
 
         return view
     }
@@ -90,6 +115,38 @@ class CalendarFragment : Fragment() {
 
 
     }
+
+    fun getTransactionData(){
+        goalsRecycler.visibility = View.GONE
+        val id = firebaseAuth.uid
+        database = FirebaseDatabase.getInstance().getReference("Goals")
+
+        database.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                goalsList.clear()
+                if(snapshot.exists()){
+                    for (empSnap in snapshot.children){
+                        val goalsData = empSnap.getValue(Goals::class.java)
+                        goalsList.add(goalsData!!)
+                    }
+                    for(i in goalsList){
+                        if(i.date == dateSet){
+                           goalsTemp.add(i)
+                        }
+                    }
+                    val mAdapter =  GoalsViewAdapter(goalsTemp)
+                    goalsRecycler.adapter = mAdapter
+
+                    goalsRecycler.visibility = View.VISIBLE
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+
+        })
+    }
+
 }
 
 fun convertDateFormat(inputDate: String): String {
