@@ -1,9 +1,11 @@
 package ph.edu.dlsu.mobdeve.mojicajera.itipid
 
+import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -75,11 +77,26 @@ class EditTransaction : AppCompatActivity() {
         }
 
         binding.deleteButton.setOnClickListener {
-            val transacId = transactString
-            dbRef.child(transacId).removeValue()
-            val intent = Intent(this, Home::class.java)
-            startActivity(intent)
-            finish()
+            var builder = AlertDialog.Builder(this)
+            builder.setTitle("Confirm Delete")
+            builder.setMessage("Are you sure you want to delete this item?")
+            builder.setPositiveButton("Yes") { dialogInterface, which ->
+                val transacId = transactString
+                dbRef.child(transacId).removeValue()
+                Toast.makeText(applicationContext, "clicked yes", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, Home::class.java)
+                startActivity(intent)
+                finish()
+            }
+            builder.setNegativeButton("No") { dialogInterface, which ->
+                Toast.makeText(applicationContext, "clicked No", Toast.LENGTH_SHORT).show()
+            }
+            // Create the AlertDialog
+            val alertDialog: AlertDialog = builder.create()
+            // Set other dialog properties
+            alertDialog.setCancelable(false)
+            alertDialog.show()
+
         }
 
         binding.cancelButton.setOnClickListener {
