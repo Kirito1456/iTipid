@@ -70,7 +70,8 @@ class CalendarFragment : Fragment() {
         val calendarView = view.findViewById<CalendarView>(R.id.calendarView)
         val textView = view.findViewById<TextView>(R.id.selectedDate)
 
-        // TEST CODE
+        // TODO: Fix Possible Bills Data leak for Users
+        // TEST CODE:
         val formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy")
         dateSet = LocalDate.now().format(formatter)
         textView.text = dateSet
@@ -78,6 +79,7 @@ class CalendarFragment : Fragment() {
         goalsTemp.clear()
         getBillsData()
         getTransactionData()
+        // END OF TEST CODE
 
         calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
             dateSet = String.format("%02d/%02d/%04d", month+1, dayOfMonth, year)
