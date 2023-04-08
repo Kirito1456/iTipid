@@ -1,5 +1,6 @@
 package ph.edu.dlsu.mobdeve.mojicajera.itipid.fragments
 
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CalendarView
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
@@ -17,6 +19,8 @@ import ph.edu.dlsu.mobdeve.mojicajera.itipid.adapters.GoalsViewAdapter
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.Bills
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.Goals
 import java.text.DateFormatSymbols
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 
 class CalendarFragment : Fragment() {
@@ -33,6 +37,7 @@ class CalendarFragment : Fragment() {
     private lateinit var database: DatabaseReference
     private lateinit var  firebaseAuth: FirebaseAuth
     private lateinit var dateSet: String
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -64,6 +69,15 @@ class CalendarFragment : Fragment() {
 
         val calendarView = view.findViewById<CalendarView>(R.id.calendarView)
         val textView = view.findViewById<TextView>(R.id.selectedDate)
+
+        // TEST CODE
+        val formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy")
+        dateSet = LocalDate.now().format(formatter)
+        textView.text = dateSet
+        billsTemp.clear() // Clear the bills list
+        goalsTemp.clear()
+        getBillsData()
+        getTransactionData()
 
         calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
             dateSet = String.format("%02d/%02d/%04d", month+1, dayOfMonth, year)
