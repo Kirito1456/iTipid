@@ -16,6 +16,7 @@ import com.google.firebase.database.*
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.R
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.adapters.BillsViewAdapter
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.adapters.GoalsViewAdapter
+import ph.edu.dlsu.mobdeve.mojicajera.itipid.adapters.TransactionsAdapter
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.Bills
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.Goals
 import java.text.DateFormatSymbols
@@ -27,7 +28,7 @@ class CalendarFragment : Fragment() {
     private lateinit var billsRecycler: RecyclerView
     private lateinit var billsList: ArrayList<Bills>
     private lateinit var billsTemp: ArrayList<Bills>
-    private lateinit var billsAdapter: BillsViewAdapter
+    private lateinit var billsAdapter: TransactionsAdapter
 
     private lateinit var goalsRecycler: RecyclerView
     private lateinit var goalsList: ArrayList<Goals>
@@ -51,7 +52,7 @@ class CalendarFragment : Fragment() {
         billsRecycler.setHasFixedSize(true)
         billsList = ArrayList()
         billsTemp = ArrayList()
-        billsAdapter = BillsViewAdapter(billsList)
+        billsAdapter = TransactionsAdapter(billsList)
         billsRecycler.adapter = billsAdapter
 
         goalsRecycler = view.findViewById(R.id.eventsRecyler)
@@ -116,7 +117,7 @@ class CalendarFragment : Fragment() {
 
                         }
                     }
-                    val mAdapter = BillsViewAdapter(billsTemp)
+                    val mAdapter = TransactionsAdapter(billsTemp)
                     billsRecycler.adapter = mAdapter
 
                     billsRecycler.visibility = View.VISIBLE
