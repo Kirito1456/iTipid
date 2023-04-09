@@ -27,7 +27,7 @@ class TransactionsAdapter(private val billsList: ArrayList<Bills>)
     var onItemClick: ((Bills) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventsViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.events_row,parent,false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.calendar_row_layout,parent,false)
         return EventsViewHolder(view)
     }
 
@@ -45,6 +45,6 @@ class TransactionsAdapter(private val billsList: ArrayList<Bills>)
 
     class EventsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         //val label: TextView = itemView.findViewById(R.id.)
-        val label: TextView = itemView.findViewById(R.id.billLabel)
+        val label: TextView = itemView.findViewById(R.id.eventTitle)
     }
 }
