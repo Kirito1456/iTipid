@@ -83,7 +83,7 @@ class Home : AppCompatActivity() {
         })
 
 
-        // TODO: <BUG> Pressing Home Button Clears Data
+        //TODO: Fix Home Button Bug
         val homeButton = findViewById<ImageButton>(R.id.homeButton)
         homeButton.setOnClickListener(){
             //mAuth.signOut()
