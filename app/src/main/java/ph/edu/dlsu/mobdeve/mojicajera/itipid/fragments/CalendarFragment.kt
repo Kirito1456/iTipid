@@ -15,6 +15,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.R
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.adapters.BillsViewAdapter
+import ph.edu.dlsu.mobdeve.mojicajera.itipid.adapters.CalendarGoalsAdapter
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.adapters.GoalsViewAdapter
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.adapters.TransactionsAdapter
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.Bills
@@ -33,7 +34,7 @@ class CalendarFragment : Fragment() {
     private lateinit var goalsRecycler: RecyclerView
     private lateinit var goalsList: ArrayList<Goals>
     private lateinit var goalsTemp: ArrayList<Goals>
-    private lateinit var goalsAdapter: GoalsViewAdapter
+    private lateinit var goalsAdapter: CalendarGoalsAdapter
 
     private lateinit var database: DatabaseReference
     private lateinit var  firebaseAuth: FirebaseAuth
@@ -60,13 +61,10 @@ class CalendarFragment : Fragment() {
         goalsRecycler.setHasFixedSize(true)
         goalsList = ArrayList()
         goalsTemp = ArrayList()
-        goalsAdapter = GoalsViewAdapter(goalsList)
-        goalsRecycler.adapter = billsAdapter
-
-
+        goalsAdapter = CalendarGoalsAdapter(goalsList)
+        goalsRecycler.adapter = goalsAdapter
 
         firebaseAuth = FirebaseAuth.getInstance()
-
 
         val calendarView = view.findViewById<CalendarView>(R.id.calendarView)
         val textView = view.findViewById<TextView>(R.id.selectedDate)
@@ -79,7 +77,7 @@ class CalendarFragment : Fragment() {
         billsTemp.clear() // Clear the bills list
         goalsTemp.clear()
         getBillsData()
-        getTransactionData()
+        getGoalsData()
         // END OF TEST CODE
 
         calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
@@ -88,10 +86,8 @@ class CalendarFragment : Fragment() {
             billsTemp.clear()
             goalsTemp.clear()
             getBillsData()
-            getTransactionData()
+            getGoalsData()
         }
-
-
 
         return view
     }
@@ -132,7 +128,7 @@ class CalendarFragment : Fragment() {
 
     }
 
-    fun getTransactionData(){
+    fun getGoalsData(){
         goalsRecycler.visibility = View.GONE
         val id = firebaseAuth.uid
         database = FirebaseDatabase.getInstance().getReference("Goals")
@@ -153,7 +149,7 @@ class CalendarFragment : Fragment() {
                         }
 
                     }
-                    val mAdapter =  GoalsViewAdapter(goalsTemp)
+                    val mAdapter =  CalendarGoalsAdapter(goalsTemp)
                     goalsRecycler.adapter = mAdapter
 
                     goalsRecycler.visibility = View.VISIBLE
