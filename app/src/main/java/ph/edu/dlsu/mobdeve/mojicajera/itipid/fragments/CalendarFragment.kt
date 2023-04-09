@@ -146,9 +146,12 @@ class CalendarFragment : Fragment() {
                         goalsList.add(goalsData!!)
                     }
                     for(i in goalsList){
-                        if(i.date == dateSet){
-                           goalsTemp.add(i)
+                        if(i.uid == id){
+                            if(i.date == dateSet){
+                                goalsTemp.add(i)
+                            }
                         }
+
                     }
                     val mAdapter =  GoalsViewAdapter(goalsTemp)
                     goalsRecycler.adapter = mAdapter
