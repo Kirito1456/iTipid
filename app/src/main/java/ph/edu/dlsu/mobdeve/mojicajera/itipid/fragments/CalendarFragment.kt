@@ -74,7 +74,7 @@ class CalendarFragment : Fragment() {
         // TEST CODE:
         val formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy")
         dateSet = LocalDate.now().format(formatter)
-        textView.text = dateSet
+        textView.text = "Today is : $dateSet"
         billsTemp.clear() // Clear the bills list
         goalsTemp.clear()
         getBillsData()
@@ -83,9 +83,8 @@ class CalendarFragment : Fragment() {
 
         calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
             dateSet = String.format("%02d/%02d/%04d", month+1, dayOfMonth, year)
-            var date = convertDateFormat(dateSet)
-            textView.text = "$dateSet"
-            billsTemp.clear() // Clear the bills list
+            textView.text = "Today is : $dateSet"
+            billsTemp.clear()
             goalsTemp.clear()
             getBillsData()
             getTransactionData()
