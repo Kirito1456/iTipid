@@ -14,10 +14,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.R
-import ph.edu.dlsu.mobdeve.mojicajera.itipid.adapters.BillsViewAdapter
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.adapters.CalendarGoalsAdapter
-import ph.edu.dlsu.mobdeve.mojicajera.itipid.adapters.GoalsViewAdapter
-import ph.edu.dlsu.mobdeve.mojicajera.itipid.adapters.TransactionsAdapter
+import ph.edu.dlsu.mobdeve.mojicajera.itipid.adapters.CalendarBillsAdapter
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.Bills
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.Goals
 import java.text.DateFormatSymbols
@@ -29,7 +27,7 @@ class CalendarFragment : Fragment() {
     private lateinit var billsRecycler: RecyclerView
     private lateinit var billsList: ArrayList<Bills>
     private lateinit var billsTemp: ArrayList<Bills>
-    private lateinit var billsAdapter: TransactionsAdapter
+    private lateinit var billsAdapter: CalendarBillsAdapter
 
     private lateinit var goalsRecycler: RecyclerView
     private lateinit var goalsList: ArrayList<Goals>
@@ -53,7 +51,7 @@ class CalendarFragment : Fragment() {
         billsRecycler.setHasFixedSize(true)
         billsList = ArrayList()
         billsTemp = ArrayList()
-        billsAdapter = TransactionsAdapter(billsList)
+        billsAdapter = CalendarBillsAdapter(billsList)
         billsRecycler.adapter = billsAdapter
 
         goalsRecycler = view.findViewById(R.id.eventsRecyler)
@@ -112,7 +110,7 @@ class CalendarFragment : Fragment() {
 
                         }
                     }
-                    val mAdapter = TransactionsAdapter(billsTemp)
+                    val mAdapter = CalendarBillsAdapter(billsTemp)
                     billsRecycler.adapter = mAdapter
 
                     billsRecycler.visibility = View.VISIBLE

@@ -11,7 +11,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.R
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.Transactions
-import ph.edu.dlsu.mobdeve.mojicajera.itipid.adapters.RecyclerViewAdapter
+import ph.edu.dlsu.mobdeve.mojicajera.itipid.adapters.TransactionsAdapter
 
 
 class DailyFragment : Fragment() {
@@ -19,7 +19,7 @@ class DailyFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var transactionList: ArrayList<Transactions>
     private lateinit var transactionTemp: ArrayList<Transactions>
-    private lateinit var transactionAdapter: RecyclerViewAdapter
+    private lateinit var transactionAdapter: TransactionsAdapter
     private lateinit var database: DatabaseReference
     private lateinit var  firebaseAuth: FirebaseAuth
 
@@ -34,7 +34,7 @@ class DailyFragment : Fragment() {
 
         transactionList = ArrayList()
         transactionTemp = ArrayList()
-        transactionAdapter =  RecyclerViewAdapter(transactionList)
+        transactionAdapter =  TransactionsAdapter(transactionList)
         recyclerView.adapter = transactionAdapter
         firebaseAuth = FirebaseAuth.getInstance()
          getTransactionData()
@@ -66,7 +66,7 @@ class DailyFragment : Fragment() {
                     }
                 }
                 transactionTemp.reverse()
-                val mAdapter =  RecyclerViewAdapter(transactionTemp)
+                val mAdapter =  TransactionsAdapter(transactionTemp)
                 recyclerView.adapter = mAdapter
 
                 recyclerView.visibility = View.VISIBLE

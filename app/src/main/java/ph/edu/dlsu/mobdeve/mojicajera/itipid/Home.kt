@@ -6,18 +6,14 @@ import android.os.Bundle
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.Button
 import android.widget.ImageButton
-import android.widget.TableLayout
 import android.widget.TextView
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.adapters.FragmentPageAdapter
-import ph.edu.dlsu.mobdeve.mojicajera.itipid.adapters.RecyclerViewAdapter
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.Transactions
 
 class Home : AppCompatActivity() {
