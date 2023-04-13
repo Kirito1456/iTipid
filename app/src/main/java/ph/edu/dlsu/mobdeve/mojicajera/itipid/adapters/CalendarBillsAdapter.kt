@@ -11,14 +11,6 @@ import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.Bills
 class CalendarBillsAdapter(private val billsList: ArrayList<Bills>)
     : RecyclerView.Adapter<CalendarBillsAdapter.EventsViewHolder>() {
 
-    companion object {
-        const val labelKey : String = "LABEL_KEY"
-        const val amountKey : String = "AMOUNT_KEY"
-        const val positionKey: String = "POSITION_KEY"
-        const val dateKey : String = "DATE_KEY"
-        const val billsKey : String = "BILLS_KEY"
-    }
-
     var onItemClick: ((Bills) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventsViewHolder {
@@ -29,8 +21,6 @@ class CalendarBillsAdapter(private val billsList: ArrayList<Bills>)
     override fun onBindViewHolder(holder: EventsViewHolder, position: Int) {
         val bills = billsList[position]
         holder.label.text = bills.label
-//        holder.amount.text = bills.amount.toString()
-//        holder.date.text = bills.dueDate.toString()
     }
 
 
@@ -39,7 +29,6 @@ class CalendarBillsAdapter(private val billsList: ArrayList<Bills>)
     }
 
     class EventsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        //val label: TextView = itemView.findViewById(R.id.)
         val label: TextView = itemView.findViewById(R.id.eventTitle)
     }
 }

@@ -8,6 +8,5 @@ class Goals (
     var goalAmount: Double?= null,
     var label: String?= null,
     var goalID : String?= null,
-    //var isComplete: Boolean?= null
         ) {
 }

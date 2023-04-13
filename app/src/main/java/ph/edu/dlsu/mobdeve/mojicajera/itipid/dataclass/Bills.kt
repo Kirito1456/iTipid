@@ -7,7 +7,6 @@ class Bills(
     var amount: Double?= null,
     var dueDate: String?= null,
     var billID: String?= null,
-    //var status: String?= null,
 ) {
 
 }

@@ -1,6 +1,5 @@
 package ph.edu.dlsu.mobdeve.mojicajera.itipid.adapters
 
-import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,9 +9,7 @@ import android.widget.ImageButton
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.coroutines.processNextEventInCurrentThread
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.EditBill
-import ph.edu.dlsu.mobdeve.mojicajera.itipid.EditTransaction
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.R
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.Bills
 

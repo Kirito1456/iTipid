@@ -10,7 +10,6 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.EditGoals
-import ph.edu.dlsu.mobdeve.mojicajera.itipid.EditTransaction
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.R
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.Goals
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.Transactions

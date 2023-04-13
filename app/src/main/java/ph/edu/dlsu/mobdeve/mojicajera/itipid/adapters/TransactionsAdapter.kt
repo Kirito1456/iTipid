@@ -33,7 +33,6 @@ class TransactionsAdapter (private val transactionList: ArrayList<Transactions>)
     }
 
     override fun onBindViewHolder(holder: TransactionViewHolder, position: Int) {
-       // holder.bindData(this.videoData[position])
         val transaction = transactionList[position]
         holder.label.text = transaction.label
         holder.amount.text = transaction.amount.toString()
@@ -63,13 +62,10 @@ class TransactionsAdapter (private val transactionList: ArrayList<Transactions>)
             holder.itemView.context.startActivity(intent)
         }
 
-
     }
     override fun getItemCount(): Int {
         return transactionList.size
     }
-
-
 
     class TransactionViewHolder(itemView: View)  : RecyclerView.ViewHolder(itemView){
 
@@ -77,7 +73,5 @@ class TransactionsAdapter (private val transactionList: ArrayList<Transactions>)
         val amount: TextView = itemView.findViewById(R.id.transactionAmount)
         val date: TextView = itemView.findViewById(R.id.tvDate)
         val type: TextView = itemView.findViewById(R.id.type)
-
-
     }
 }
