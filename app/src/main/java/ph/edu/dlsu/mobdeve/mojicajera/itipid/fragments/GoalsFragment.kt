@@ -41,7 +41,6 @@ class GoalsFragment : Fragment() {
         return view
     }
 
-
      fun getTransactionData(){
         recyclerView.visibility = View.GONE
         val id = firebaseAuth.uid
@@ -66,7 +65,6 @@ class GoalsFragment : Fragment() {
                     recyclerView.visibility = View.VISIBLE
                 }
             }
-
             override fun onCancelled(error: DatabaseError) {
             }
 

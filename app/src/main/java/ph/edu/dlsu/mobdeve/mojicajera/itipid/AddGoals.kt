@@ -12,13 +12,12 @@ import com.google.firebase.database.FirebaseDatabase
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.Goals
 
 class AddGoals : AppCompatActivity() {
-    //EditTextViews
+
     private lateinit var etGoalsLabel: EditText
     private lateinit var etGoalsAmount: EditText
     private lateinit var etGoalsStarting: EditText
     private lateinit var etGoalsDate: EditText
 
-    //Database Reference
     private lateinit var dbRef : DatabaseReference
     private lateinit var  firebaseAuth: FirebaseAuth
     private lateinit var  firebase: FirebaseDatabase
@@ -36,13 +35,13 @@ class AddGoals : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
         firebase = FirebaseDatabase.getInstance()
 
-        //Save Button
+
         val saveButton = findViewById<Button>(R.id.saveButton)
         saveButton.setOnClickListener{
             saveGoalsData()
         }
 
-        //Cancel Button
+
         val cancelButton = findViewById<Button>(R.id.cancelButton)
         cancelButton.setOnClickListener(){
             val intent = Intent(this, Home::class.java)

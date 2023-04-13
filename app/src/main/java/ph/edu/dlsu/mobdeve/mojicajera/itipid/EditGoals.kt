@@ -15,12 +15,10 @@ class EditGoals : AppCompatActivity() {
     companion object {
         const val labelKey : String = "LABEL_KEY"
         const val amountKey : String = "AMOUNT_KEY"
-        //const val positionKey: String = "POSITION_KEY"
         const val startingKey : String = "STARTING_KEY"
         const val dateKey : String = "DATE_KEY"
         const val goalsKey : String = "GOAL_KEY"
     }
-    //Database References
     private lateinit var dbRef : DatabaseReference
     private lateinit var  firebaseAuth: FirebaseAuth
     private lateinit var  firebase: FirebaseDatabase
@@ -52,7 +50,6 @@ class EditGoals : AppCompatActivity() {
         binding.editGoalsAmount.setText(amountString)
         binding.editGoalsDate.setText(dateString)
 
-        //save Edited Text
         binding.saveButton.setOnClickListener {
             val goalsId = goalsString
             val uid = firebaseAuth.uid.toString()

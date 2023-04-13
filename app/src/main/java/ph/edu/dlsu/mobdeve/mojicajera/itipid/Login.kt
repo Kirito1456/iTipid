@@ -14,7 +14,6 @@ class Login : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(R.layout.activity_register)
-
         firebaseAuth = FirebaseAuth.getInstance()
         binding.createAccount.setOnClickListener{
             val intent = Intent(this, Register::class.java)

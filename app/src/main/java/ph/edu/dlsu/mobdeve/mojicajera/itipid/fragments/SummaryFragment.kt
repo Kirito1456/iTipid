@@ -81,7 +81,6 @@ class SummaryFragment : Fragment() {
 
                 pieChart.animateY(200)
             }
-
             override fun onCancelled(error: DatabaseError) {
             }
         })

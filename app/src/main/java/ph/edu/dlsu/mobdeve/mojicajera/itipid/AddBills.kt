@@ -19,7 +19,6 @@ class AddBills : AppCompatActivity() {
     private lateinit var etBillsAmount: EditText
     private lateinit var etBillsDate: EditText
 
-    //Database Reference
     private lateinit var dbRef : DatabaseReference
     private lateinit var  firebaseAuth: FirebaseAuth
     private lateinit var  firebase: FirebaseDatabase
@@ -37,13 +36,11 @@ class AddBills : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
         firebase = FirebaseDatabase.getInstance()
 
-        //Save Button
         val saveButton = findViewById<Button>(R.id.saveButton)
         saveButton.setOnClickListener{
             saveGoalsData()
         }
 
-        //Cancel Button
         val cancelButton = findViewById<Button>(R.id.cancelButton)
         cancelButton.setOnClickListener(){
             val intent = Intent(this, Home::class.java)

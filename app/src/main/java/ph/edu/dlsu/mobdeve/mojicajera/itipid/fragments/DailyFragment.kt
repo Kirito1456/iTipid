@@ -27,19 +27,14 @@ class DailyFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_daily, container, false)
         recyclerView = view.findViewById(R.id.recyclerView)
-
-
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.setHasFixedSize(true)
-
         transactionList = ArrayList()
         transactionTemp = ArrayList()
         transactionAdapter =  TransactionsAdapter(transactionList)
         recyclerView.adapter = transactionAdapter
         firebaseAuth = FirebaseAuth.getInstance()
-         getTransactionData()
-
-
+        getTransactionData()
         return view
     }
 
@@ -47,10 +42,7 @@ class DailyFragment : Fragment() {
     private fun getTransactionData(){
     recyclerView.visibility = View.GONE
         val id = firebaseAuth.uid.toString()
-
     database = FirebaseDatabase.getInstance().getReference("Transactions")
-
-
 
     database.addValueEventListener(object : ValueEventListener{
         override fun onDataChange(snapshot: DataSnapshot) {
@@ -72,11 +64,8 @@ class DailyFragment : Fragment() {
                 recyclerView.visibility = View.VISIBLE
             }
         }
-
         override fun onCancelled(error: DatabaseError) {
-
         }
-
     })
 }
 

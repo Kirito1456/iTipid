@@ -42,7 +42,6 @@ class CalendarFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_calendar, container, false)
 
         dateSet = "04/02/2001"
@@ -67,7 +66,6 @@ class CalendarFragment : Fragment() {
         val calendarView = view.findViewById<CalendarView>(R.id.calendarView)
         val textView = view.findViewById<TextView>(R.id.selectedDate)
 
-
         val formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy")
         dateSet = LocalDate.now().format(formatter)
         textView.text = "Today is : $dateSet"
@@ -75,7 +73,6 @@ class CalendarFragment : Fragment() {
         goalsTemp.clear()
         getBillsData()
         getGoalsData()
-
 
         calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
             dateSet = String.format("%02d/%02d/%04d", month+1, dayOfMonth, year)
@@ -97,32 +94,29 @@ class CalendarFragment : Fragment() {
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 billsList.clear()
+
                 if (snapshot.exists()) {
                     for (empSnap in snapshot.children) {
                         val billsData = empSnap.getValue(Bills::class.java)
                         billsList.add(billsData!!)
                     }
+
                     for (i in billsList){
                         if(i.uid == id){
                             if(i.dueDate == dateSet){
                                 billsTemp.add(i)
                             }
-
                         }
                     }
                     val mAdapter = CalendarBillsAdapter(billsTemp)
                     billsRecycler.adapter = mAdapter
-
                     billsRecycler.visibility = View.VISIBLE
                 }
             }
 
             override fun onCancelled(error: DatabaseError) {
             }
-
         })
-
-
     }
 
     fun getGoalsData(){
@@ -148,28 +142,14 @@ class CalendarFragment : Fragment() {
                     }
                     val mAdapter =  CalendarGoalsAdapter(goalsTemp)
                     goalsRecycler.adapter = mAdapter
-
                     goalsRecycler.visibility = View.VISIBLE
                 }
             }
-
             override fun onCancelled(error: DatabaseError) {
             }
-
         })
     }
 
 }
-
-fun convertDateFormat(inputDate: String): String {
-    val dateParts = inputDate.split("/")
-    val month = dateParts[0].toInt()
-    val day = dateParts[1].toInt()
-    val year = dateParts[2]
-
-    val monthString = DateFormatSymbols().months[month - 1]
-    return "$year, $monthString $day"
-}
-
 
 

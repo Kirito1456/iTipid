@@ -16,11 +16,9 @@ class EditBill : AppCompatActivity() {
         const val billsKey : String = "BILLS_KEY"
         const val labelKey : String = "LABEL_KEY"
         const val amountKey : String = "AMOUNT_KEY"
-        //const val positionKey: String = "POSITION_KEY"
         const val dateKey : String = "DATE_KEY"
     }
 
-    //Database Reference
     private lateinit var dbRef : DatabaseReference
     private lateinit var  firebaseAuth: FirebaseAuth
     private lateinit var  firebase: FirebaseDatabase
@@ -50,12 +48,10 @@ class EditBill : AppCompatActivity() {
         binding.editTransactionAmount.setText(amountString)
         binding.editTransactionDate.setText(dateString)
 
-        //Save Edited Data
         binding.saveButton.setOnClickListener {
             val billsId = billsString
             val uid = firebaseAuth.uid.toString()
-            val bills = Bills(
-                uid,
+            val bills = Bills(uid,
                 binding.editTransactionLabel.text.toString(),
                 binding.editTransactionAmount.text.toString().toDouble(),
                 binding.editTransactionDate.text.toString(),

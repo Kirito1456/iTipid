@@ -78,11 +78,8 @@ class Home : AppCompatActivity() {
             }
         })
 
-
-        //TODO: Fix Home Button Bug
         val homeButton = findViewById<ImageButton>(R.id.homeButton)
         homeButton.setOnClickListener(){
-            //mAuth.signOut()
             val intent = Intent(this, Home::class.java)
             startActivity(intent)
         }

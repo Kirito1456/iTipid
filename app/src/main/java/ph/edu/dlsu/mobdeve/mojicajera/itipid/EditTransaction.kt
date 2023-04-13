@@ -1,6 +1,6 @@
 package ph.edu.dlsu.mobdeve.mojicajera.itipid
 
-import android.content.DialogInterface
+
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -18,12 +18,10 @@ class EditTransaction : AppCompatActivity() {
         const val transacKey : String = "TRANSAC_KEY"
         const val labelKey : String = "LABEL_KEY"
         const val amountKey : String = "AMOUNT_KEY"
-        //const val positionKey: String = "POSITION_KEY"
         const val descKey : String = "DESC_KEY"
         const val dateKey : String = "DATE_KEY"
     }
 
-    //Database References
     private lateinit var dbRef : DatabaseReference
     private lateinit var  firebaseAuth: FirebaseAuth
     private lateinit var  firebase: FirebaseDatabase
@@ -57,7 +55,6 @@ class EditTransaction : AppCompatActivity() {
         binding.editTransactionDate.setText(dateString)
         binding.editTransactionType.setText(descriptionString)
 
-        //Save Edited Text
         binding.saveButton.setOnClickListener {
             val transacId = transactString
             val uid = firebaseAuth.uid.toString()

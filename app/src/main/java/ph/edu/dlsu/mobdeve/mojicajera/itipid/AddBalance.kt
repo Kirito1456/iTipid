@@ -11,8 +11,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.Transactions
-import ph.edu.dlsu.mobdeve.mojicajera.itipid.dataclass.User
-import java.util.*
+
 
 
 class AddBalance : AppCompatActivity() {
@@ -33,8 +32,6 @@ class AddBalance : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_balance)
 
-
-
         etTransacName = findViewById(R.id.editTransactionLabel)
         etTransacAmount = findViewById(R.id.editTransactionAmount)
         etTransacDate = findViewById(R.id.editTransactionDate)
@@ -44,40 +41,31 @@ class AddBalance : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
         firebase = FirebaseDatabase.getInstance()
 
-
-        // Save Button
         val saveButton = findViewById<Button>(R.id.saveButton)
         saveButton.setOnClickListener{
             saveTransactionData()
 
         }
 
-        // Cancel Button
         val cancelButton = findViewById<Button>(R.id.cancelButton)
         cancelButton.setOnClickListener(){
             val intent = Intent(this, Home::class.java)
             startActivity(intent)
         }
 
-        // Income Button
+
         val incomeButton = findViewById<Button>(R.id.incomeButton)
         val expenseButton = findViewById<Button>(R.id.expenseButton)
         incomeButton.setOnClickListener(){
             etTransacDescription.text = "Income"
         }
 
-        // Expense Button
         expenseButton.setOnClickListener(){
             etTransacDescription.text ="Expense"
         }
     }
 
     private fun saveTransactionData(){
-
-        var arrayList : ArrayList<Transactions>
-        val list = ArrayList<User>()
-        val transactType: Boolean // True = Income, False = Expense
-
 
         val transacName = etTransacName.text.toString()
         val transacAmount = etTransacAmount.text.toString()
@@ -97,7 +85,6 @@ class AddBalance : AppCompatActivity() {
             etTransacDescription.error = "Please pick a Transaction"
         }
 
-        val id = 0
         val transacId = dbRef.push().key!!
         val uid = firebaseAuth.uid.toString()
         val transaction = Transactions(uid, transacName, transacAmount.toDouble(), transacDate, transacDescription, transacId)
